@@ -13,7 +13,9 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.ArmRotation;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +25,8 @@ import frc.robot.subsystems.DriveTrain;
  * project.
  */
 public class Robot extends TimedRobot {
+
+  public static final Subsystem ArmRotation = null;
 
   public static OI oi;
 

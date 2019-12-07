@@ -8,28 +8,27 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class ArmRotationCommand extends Command {
+  public int direction;
+
   public ArmRotationCommand() {
-   pubkic int direction;
-
-  public ArmAutoRotationCommand() {
-     direction = -1;
-     requires(Robot.ArmRotation);
-   }
-
+    requires(Robot.armRotation);
+    direction = -1;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     setTimeout(2.5);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ArmRotation.turn(0.325 * direction);
+    Robot.armRotation.turn(0.325 * direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,10 +40,8 @@ public class ArmRotationCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    direction *= -1;
-    
-    
 
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

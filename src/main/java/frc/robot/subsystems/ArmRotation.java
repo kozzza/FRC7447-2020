@@ -8,17 +8,21 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import frc.robot.RobotMap;
+import frc.robot.commands.ArmRotationCommand;
 
 /**
  * Add your docs here.
  */
 public class ArmRotation extends Subsystem {
   public WPI_VictorSPX rightArmMotor = new WPI_VictorSPX(RobotMap.rightArmMotor);
-  public WPI_VictorSPX leftArmMotor = new WPI_VictorSPX(RobotMap.lefArmMotor);
+  public WPI_VictorSPX leftArmMotor = new WPI_VictorSPX(RobotMap.leftArmMotor);
 
   public void turn(double percentVoltage) {
-    rightArmMotor.set(ControlMode.Percentoutput, percentVoltage);
-    leftArmMotor.set(ControlMode.Percentoutput, percentVoltage);
+    rightArmMotor.set(ControlMode.PercentOutput, percentVoltage);
+    leftArmMotor.set(ControlMode.PercentOutput, percentVoltage);
 
   }
 
