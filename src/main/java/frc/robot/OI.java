@@ -7,8 +7,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Button;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.FindTargetCommand;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DistanceAdjustCommand;
+
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,8 +25,16 @@ public class OI {
   //// joystick.
   // You create one by telling it which joystick it's on and which button
   // number it is.
-  public Joystick stick = new Joystick(0);
+  public XboxController stick = new XboxController(0);
+  
+  public OI() {
+    Button buttonA = new JoystickButton(stick, RobotMap.buttonA);
+    buttonA.whileHeld(new DistanceAdjustCommand()); 
 
+    Button buttonB = new JoystickButton(stick, RobotMap.buttonB);
+    buttonB.whileHeld(new FindTargetCommand());
+    
+  }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.

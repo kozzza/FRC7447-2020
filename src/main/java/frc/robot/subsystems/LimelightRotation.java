@@ -7,28 +7,27 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.ArmRotationCommand;
 
 /**
  * Add your docs here.
  */
-public class ArmRotation extends Subsystem {
-  public WPI_VictorSPX rightArmMotor = new WPI_VictorSPX(RobotMap.rightArmMotor);
-  public WPI_VictorSPX leftArmMotor = new WPI_VictorSPX(RobotMap.leftArmMotor);
+public class LimelightRotation extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  private WPI_VictorSPX limelightMotor = new WPI_VictorSPX(RobotMap.limelight);
 
-  public void turn(double percentVoltage) {
-    rightArmMotor.set(ControlMode.PercentOutput, percentVoltage);
-    leftArmMotor.set(ControlMode.PercentOutput, percentVoltage);
-
+  public void limelightSpin(double percentVoltage) {
+    limelightMotor.set(ControlMode.PercentOutput, percentVoltage);
   }
-
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ArmRotationCommand());
+    // setDefaultCommand(new MySpecialCommand());
+  }
+  public void turn(double d) {
   }
 }
