@@ -13,17 +13,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimelightRotation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -41,9 +40,6 @@ public class Robot extends TimedRobot {
 
   public static DriveTrain driveTrain = new DriveTrain();
   public static LimelightRotation limelightRotation = new LimelightRotation();
-
-  public DatagramSocket socket;
-  public DatagramPacket packet;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -119,15 +115,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    try {
-      socket = new DatagramSocket(null);
-      socket.bind(new InetSocketAddress(5800));
-      packet = new DatagramPacket(new byte[1500], 1500);
-    } 
-    catch (SocketException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -146,33 +133,53 @@ public class Robot extends TimedRobot {
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry ta = table.getEntry("ta");
-
-    // read values periodically
+    
+    //read values periodically
     double x = tx.getDouble(0.0);
     double y = ty.getDouble(0.0);
     double area = ta.getDouble(0.0);
+    
 
-    // post to smart dashboard periodically
+    //post to smart dashboard periodically
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
+  
+    Socket socket = null;
+    DataInputStream  input   = null; 
+    DataOutputStream out     = null; 
 
     try {
-      System.out.println("RECEIVED");
-      socket.receive(packet);
-      
-      String s = new String(packet.getData(), StandardCharsets.UTF_8);
-      System.out.println("Byte Array to String=" + s);
-      System.out.println("Key pressed: keycode=" + (packet.getData()));
+      socket = new Socket("127.0.0.1", 5800); 
+      System.out.println("Connected"); 
+
+      // takes input from terminal 
+      input  = new DataInputStream(System.in); 
+
+      // sends output to the socket 
+      out    = new DataOutputStream(socket.getOutputStream()); 
     } 
-    catch (SocketException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    catch(UnknownHostException u) 
+    { 
+        System.out.println(u); 
+    } 
+    catch(IOException i) 
+    { 
+        System.out.println(i); 
+    } 
+
+
+    // close the connection 
+    try
+    { 
+        input.close(); 
+        out.close(); 
+        socket.close(); 
+    } 
+    catch(IOException i) 
+    { 
+        System.out.println(i); 
+    } 
   }
 
   /**
