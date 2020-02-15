@@ -56,7 +56,7 @@ public class FindTargetCommand extends Command {
 
     double turnVoltage = kP*tx + kD * dError + kI * totalError;
 
-    Robot.driveTrain.manualDrive(move * (mmspeed + boost), turnVoltage);
+    //Robot.driveTrain.manualDrive(move * (mmspeed + boost), turnVoltage);
     lastError = tx;
   }
 

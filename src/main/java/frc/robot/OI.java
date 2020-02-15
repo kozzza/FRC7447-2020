@@ -29,10 +29,10 @@ public class OI {
   
   public OI() {
     Button buttonA = new JoystickButton(stick, RobotMap.buttonA);
-    buttonA.whileHeld(new DistanceAdjustCommand()); 
+    //buttonA.whileHeld(new DistanceAdjustCommand()); 
 
     Button buttonB = new JoystickButton(stick, RobotMap.buttonB);
-    buttonB.whileHeld(new FindTargetCommand());
+    //buttonB.whileHeld(new FindTargetCommand());
     
   }
   // There are a few additional built in buttons you can use. Additionally,

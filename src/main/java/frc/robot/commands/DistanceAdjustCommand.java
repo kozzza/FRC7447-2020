@@ -56,7 +56,7 @@ public class DistanceAdjustCommand extends Command {
     System.out.println("The driving adjust is " + drivingAdjust);
     if (tv) {
       System.out.println("Valid Target");
-      Robot.driveTrain.manualDrive(drivingAdjust, 0);
+      //Robot.driveTrain.manualDrive(drivingAdjust, 0);
     }
   }
 
