@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightRotation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 
   public static DriveTrain driveTrain = new DriveTrain();
   public static LimelightRotation limelightRotation = new LimelightRotation();
+  public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   public DatagramSocket socket;
   public DatagramPacket packet;
