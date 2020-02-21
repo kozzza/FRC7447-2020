@@ -29,10 +29,13 @@ public class RobotMap {
 
   public static int limelight = 0;
 
-  public static int buttonA = 1;
-  public static int buttonB = 2;
-  public static int buttonY = 4;
-  public static int buttonX = 3;
+  public static int buttonAPort = 1;
+  public static int buttonBPort = 2;
+  public static int buttonYPort = 4;
+  public static int buttonXPort = 3;
+
+  public static int rightBumperPort = 6;
+  public static int leftBumperPort = 5;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

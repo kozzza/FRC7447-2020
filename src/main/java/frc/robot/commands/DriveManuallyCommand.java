@@ -35,7 +35,7 @@ public class DriveManuallyCommand extends Command {
     double move = Robot.oi.stick.getTriggerAxis(GenericHID.Hand.kRight) - Robot.oi.stick.getTriggerAxis(GenericHID.Hand.kLeft);
     double turn = Robot.oi.stick.getX(Hand.kLeft);
     double boost = -Robot.oi.stick.getY(Hand.kRight)/2;  
-    //Robot.driveTrain.manualDrive(move * (mspeed + boost), turn * (tspeed + boost));
+    Robot.driveTrain.manualDrive(move * (mspeed + boost), turn * (tspeed + boost));
   }
 
   // Make this return true when this Command no longer needs to run execute()

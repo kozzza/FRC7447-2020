@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FindTargetCommand;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ReverseIntakeCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DistanceAdjustCommand;
 
@@ -28,11 +30,17 @@ public class OI {
   public XboxController stick = new XboxController(0);
   
   public OI() {
-    Button buttonA = new JoystickButton(stick, RobotMap.buttonA);
-    //buttonA.whileHeld(new DistanceAdjustCommand()); 
+    Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
+    buttonAButton.whenPressed(new DistanceAdjustCommand());
+  
+    Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
+    buttonBButton.whenPressed(new FindTargetCommand());
+  
+    Button rightBumperButton = new JoystickButton(stick, RobotMap.rightBumperPort);
+    rightBumperButton.whileHeld(new IntakeCommand());
 
-    Button buttonB = new JoystickButton(stick, RobotMap.buttonB);
-    //buttonB.whileHeld(new FindTargetCommand());
+    Button leftBumperButton = new JoystickButton (stick, RobotMap.leftBumperPort);
+    leftBumperButton.whileHeld(new ReverseIntakeCommand());
     
   }
   // There are a few additional built in buttons you can use. Additionally,
