@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightRotation;
+import frc.robot.subsystems.PneumaticSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends TimedRobot {
 
+
   public static final Subsystem ArmRotation = null;
 
   public static OI oi;
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  public static PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
 
   public DatagramSocket socket;
   public DatagramPacket packet;
