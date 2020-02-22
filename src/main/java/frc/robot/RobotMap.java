@@ -25,12 +25,22 @@ public class RobotMap {
   public static int leftSlave0 = 2;
   public static int leftSlave1 = 3;
 
+  public static int solValve1 = 0;
+  public static int solValve2 = 1;
+  // launcher ^
+  public static int solValve3 = 2;
+  public static int solValve4 = 3;
+  // first climb 
+  
+ 
   public static int limelight = 0;
+  public static int wheelSpin = 7;
 
   public static int buttonA = 1;
   public static int buttonB = 2;
   public static int buttonY = 4;
   public static int buttonX = 3;
+
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

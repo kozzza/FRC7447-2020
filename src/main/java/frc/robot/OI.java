@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -12,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FindTargetCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DistanceAdjustCommand;
+import frc.robot.commands.PnuControlCommand;
+import frc.robot.commands.PnuControlCommandClimb;
 
 
 
@@ -29,10 +24,16 @@ public class OI {
   
   public OI() {
     Button buttonA = new JoystickButton(stick, RobotMap.buttonA);
-    //buttonA.whileHeld(new DistanceAdjustCommand()); 
+    buttonA.whileHeld(new DistanceAdjustCommand()); 
 
     Button buttonB = new JoystickButton(stick, RobotMap.buttonB);
-    //buttonB.whileHeld(new FindTargetCommand());
+    buttonB.whileHeld(new FindTargetCommand());
+
+    Button buttonX = new JoystickButton(stick, RobotMap.buttonX);
+    buttonX.whenPressed(new PnuControlCommand());
+
+    Button buttonY = new JoystickButton(stick, RobotMap.buttonY);
+    buttonY.whenPressed(new PnuControlCommandClimb());
     
   }
   // There are a few additional built in buttons you can use. Additionally,

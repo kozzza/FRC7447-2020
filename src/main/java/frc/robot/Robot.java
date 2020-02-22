@@ -12,18 +12,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimelightRotation;
+import frc.robot.subsystems.PneumaticControl;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,15 +32,16 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends TimedRobot {
 
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+
   public static final Subsystem ArmRotation = null;
 
   public static OI oi;
 
   public static DriveTrain driveTrain = new DriveTrain();
+  public static PneumaticControl pneumaticControl = new PneumaticControl();
   public static LimelightRotation limelightRotation = new LimelightRotation();
-
-  public DatagramSocket socket;
-  public DatagramPacket packet;
+  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -67,6 +65,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
   }
 
   /**
@@ -119,15 +118,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    try {
-      socket = new DatagramSocket(null);
-      socket.bind(new InetSocketAddress(5800));
-      packet = new DatagramPacket(new byte[1500], 1500);
-    } 
-    catch (SocketException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -142,37 +132,27 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
+    final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    final NetworkTableEntry tx = table.getEntry("tx");
+    final NetworkTableEntry ty = table.getEntry("ty");
+    final NetworkTableEntry ta = table.getEntry("ta");
 
     // read values periodically
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
+    final double x = tx.getDouble(0.0);
+    final double y = ty.getDouble(0.0);
+    final double area = ta.getDouble(0.0);
+    
 
-    // post to smart dashboard periodically
+    //post to smart dashboard periodically
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
+   final Color detectedColor = m_colorSensor.getColor();
+   final RawColor rawColor = m_colorSensor.getRawColor();
 
-    try {
-      System.out.println("RECEIVED");
-      socket.receive(packet);
-      
-      String s = new String(packet.getData(), StandardCharsets.UTF_8);
-      System.out.println("Byte Array to String=" + s);
-      System.out.println("Key pressed: keycode=" + (packet.getData()));
-    } 
-    catch (SocketException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    System.out.println(detectedColor);
+    System.out.println(rawColor);
+
   }
 
   /**
