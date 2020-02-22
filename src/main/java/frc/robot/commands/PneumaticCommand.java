@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class PneumaticCommand extends Command {
-
+  boolean solenoid = false;
 
   public PneumaticCommand() {
     requires(Robot.pneumaticSubsystem);
@@ -22,32 +22,24 @@ public class PneumaticCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("coall;");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    final int kDoubleSolenoidForward = 4;
-    final int kDoubleSolenoidReverse = 3;
-    
-    boolean solenoidon = Robot.oi.stick.getRawButton(kDoubleSolenoidForward);
-    boolean solenoidoff = Robot.oi.stick.getRawButton(kDoubleSolenoidReverse);
-
-    Robot.pneumaticSubsystem.Solenoidonoff(solenoidon, solenoidoff);
-
-  
+    Robot.pneumaticSubsystem.Solenoid(solenoid);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    solenoid = !solenoid;
   }
 
   // Called when another command which requires one or more of the same

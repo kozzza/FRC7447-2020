@@ -21,13 +21,14 @@ public class PneumaticSubsystem extends Subsystem {
   private final DoubleSolenoid doublesolenoid = new DoubleSolenoid(0,1);
 
 
-  public void Solenoidonoff(boolean solenoidon, boolean solenoidoff) {
+  public void Solenoidonoff(boolean solenoidToggle) {
     System.out.println("Commandy5hi6hs");
-    if (solenoidon) {
-      //doublesolenoid.set(DoubleSolenoid.Value.kForward);
+    if (solenoidToggle) {
+      doublesolenoid.set(DoubleSolenoid.Value.kForward);
       System.out.println("Solenoid on");
-    } else if (solenoidoff) {
-      //doublesolenoid.set(DoubleSolenoid.Value.kReverse);
+    } 
+    else {
+      doublesolenoid.set(DoubleSolenoid.Value.kReverse);
       System.out.println("Solenoid off");
     }
   }
@@ -35,7 +36,6 @@ public class PneumaticSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new PneumaticCommand());
-
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
