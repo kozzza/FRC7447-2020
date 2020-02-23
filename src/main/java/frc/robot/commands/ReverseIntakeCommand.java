@@ -17,8 +17,9 @@ public class ReverseIntakeCommand extends Command {
   float percentVoltage = -0.5f;
 
   public ReverseIntakeCommand() {
-    // Use requires() here to declare subsystem dependencies
+
     requires(Robot.intakeSubsystem);
+
   }
 
   // Called just before this Command runs the first time
@@ -34,13 +35,12 @@ public class ReverseIntakeCommand extends Command {
 
   }
 
-  
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
+
   protected boolean isFinished() {
-    
     return false;
+    
   }
 
   // Called once after isFinished returns true

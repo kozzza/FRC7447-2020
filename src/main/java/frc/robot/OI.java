@@ -44,7 +44,7 @@ public class OI {
     leftBumperButton.whileHeld(new ReverseIntakeCommand());
 
     Button buttonXButton = new JoystickButton(stick, RobotMap.buttonXPort);
-    buttonxButton.whenPressed(new PneumaticCommand());
+    buttonXButton.whenPressed(new PneumaticCommand());
     
   }
   // There are a few additional built in buttons you can use. Additionally,
