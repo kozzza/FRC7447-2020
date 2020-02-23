@@ -13,21 +13,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class PneumaticSubsystem extends Subsystem {
+public class PneumaticShooterSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private final DoubleSolenoid doublesolenoid = new DoubleSolenoid(0,1);
+  private final DoubleSolenoid doubleSol = new DoubleSolenoid(0,1);
 
 
-  public void Solenoidonoff(boolean solenoidToggle) {
+  public void ShooterToggle(int solenoidToggle) {
     System.out.println("Toggling:");
-    if (solenoidToggle) {
-      doublesolenoid.set(DoubleSolenoid.Value.kForward);
+    if (solenoidToggle == 1) {
+      doubleSol.set(DoubleSolenoid.Value.kForward);
       System.out.println("Solenoid on");
     } 
-    else {
-      doublesolenoid.set(DoubleSolenoid.Value.kReverse);
+    else if (solenoidToggle == -1) {
+      doubleSol.set(DoubleSolenoid.Value.kReverse);
       System.out.println("Solenoid off");
     }
   }

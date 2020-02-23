@@ -14,9 +14,12 @@ import frc.robot.Robot;
 
 
 public class IntakeCommand extends Command {
-  float percentVoltage = 0.5f;
+  public static int intakeDirection; //determines whether intake will spin in or out
+  int intakeInput; //determines whether intake is on or off
 
+  //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
   public IntakeCommand() {
+    intakeDirection = -1;
     requires(Robot.intakeSubsystem);
   }
 
@@ -28,7 +31,14 @@ public class IntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override 
   protected void execute() {
-    Robot.intakeSubsystem.intakeSpin(percentVoltage);
+    //you can replace the Y Button input with whatever the driver feels like. No command calls were added in the OI.
+    if (Robot.oi.stick.getYButton() == false) {
+      intakeInput= 0;
+    }
+    else if (Robot.oi.stick.getYButton() == true) {
+      intakeInput = 1;
+    }
+    Robot.intakeSubsystem.intakeSpin(0.5f * intakeDirection * intakeInput);
     
   }
 
