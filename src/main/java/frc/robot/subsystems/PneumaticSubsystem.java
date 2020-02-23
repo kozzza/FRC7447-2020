@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.PneumaticCommand;
 
 /**
  * Add your docs here.
@@ -22,7 +21,7 @@ public class PneumaticSubsystem extends Subsystem {
 
 
   public void Solenoidonoff(boolean solenoidToggle) {
-    System.out.println("Commandy5hi6hs");
+    System.out.println("Toggling:");
     if (solenoidToggle) {
       doublesolenoid.set(DoubleSolenoid.Value.kForward);
       System.out.println("Solenoid on");
@@ -35,7 +34,6 @@ public class PneumaticSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new PneumaticCommand());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

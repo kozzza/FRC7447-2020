@@ -12,26 +12,21 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.IntakeCommand;
 
 /**
  * Add your docs here.
  */
 public class IntakeSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
   
   //instantiate new motor control objects
 
-  public WPI_VictorSPX intakeMaster = new WPI_VictorSPX (RobotMap.intakeMasterPort);
-  public WPI_VictorSPX intakeSlave = new WPI_VictorSPX (RobotMap.intakeSlavePort);
+  public WPI_VictorSPX intakeMaster = new WPI_VictorSPX(RobotMap.intakeMasterPort);
+  public WPI_VictorSPX intakeSlave = new WPI_VictorSPX(RobotMap.intakeSlavePort);
 
 
-  public void IntakeSubsystem() {
+  public IntakeSubsystem() {
     intakeSlave.follow(intakeMaster);
   }
-
-  //instantiate a new DifferentialDrive object
 
 
   public void intakeSpin(double percentVoltage) {
@@ -39,16 +34,11 @@ public class IntakeSubsystem extends Subsystem {
     intakeSlave.set(ControlMode.PercentOutput, percentVoltage);
   }
 
-  //create constructor function
-  
-  //add manualDrive() method
-
 
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new IntakeCommand());
   }
 
 
