@@ -22,11 +22,11 @@ public class PneumaticShooterSubsystem extends Subsystem {
 
   public void ShooterToggle(int solenoidToggle) {
     System.out.println("Toggling:");
-    if (solenoidToggle == 1) {
+    if (solenoidToggle == -1) {
       doubleSol.set(DoubleSolenoid.Value.kForward);
       System.out.println("Solenoid on");
     } 
-    else if (solenoidToggle == -1) {
+    else if (solenoidToggle == 1) {
       doubleSol.set(DoubleSolenoid.Value.kReverse);
       System.out.println("Solenoid off");
     }

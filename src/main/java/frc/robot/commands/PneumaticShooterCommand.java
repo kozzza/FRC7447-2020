@@ -13,9 +13,9 @@ import frc.robot.Robot;
 public class PneumaticShooterCommand extends Command {
   private int solenoidToggle;
 
-  //solenoidToggle: False means shooter is down and picking up power cells, True means shooter is up and shooting them
+  //solenoidToggle: 1 means shooter is down and picking up power cells, -1 means shooter is up and shooting them
   public PneumaticShooterCommand() {
-    solenoidToggle = -1;
+    solenoidToggle = 1;
     requires(Robot.pneumaticShooterSubsystem);
   }
 

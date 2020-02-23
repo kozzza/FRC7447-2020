@@ -36,8 +36,8 @@ public class OI {
     Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
     buttonBButton.whenPressed(new FindTargetCommand());
   
-    //Button rightBumperButton = new JoystickButton(stick, RobotMap.rightBumperPort);
-    //rightBumperButton.whileHeld(new IntakeCommand());
+    Button rightBumperButton = new JoystickButton(stick, RobotMap.rightBumperPort);
+    rightBumperButton.whileHeld(new IntakeCommand());
 
     Button buttonXButton = new JoystickButton(stick, RobotMap.buttonXPort);
     buttonXButton.whenPressed(new PneumaticShooterCommand());
