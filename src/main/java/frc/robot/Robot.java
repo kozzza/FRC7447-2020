@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.PneumaticSubsystem;
+import frc.robot.subsystems.PneumaticShooterSubsystem;
 import frc.robot.subsystems.LimelightRotation;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
 
   public static DriveTrain driveTrain = new DriveTrain();
-  public static PneumaticSubsystem pneumaticSubsystem = new PneumaticSubsystem();
+  public static PneumaticShooterSubsystem pneumaticShooterSubsystem = new PneumaticShooterSubsystem();
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static Keyboard keyboard = new Keyboard();

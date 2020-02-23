@@ -10,12 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PneumaticCommand extends Command {
-  boolean solenoidToggle = false;
+public class PneumaticShooterCommand extends Command {
+  private int solenoidToggle;
 
-  public PneumaticCommand() {
-    requires(Robot.pneumaticSubsystem);
-
+  //solenoidToggle: 1 means shooter is down and picking up power cells, -1 means shooter is up and shooting them
+  public PneumaticShooterCommand() {
+    solenoidToggle = 1;
+    requires(Robot.pneumaticShooterSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +27,7 @@ public class PneumaticCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.pneumaticSubsystem.Solenoidonoff(solenoidToggle);
+    Robot.pneumaticShooterSubsystem.ShooterToggle(solenoidToggle);
 
   }
 
@@ -39,8 +40,8 @@ public class PneumaticCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    solenoidToggle =! solenoidToggle;
-    
+    solenoidToggle *= -1;
+    IntakeCommand.intakeDirection = solenoidToggle;
   }
 
   // Called when another command which requires one or more of the same
