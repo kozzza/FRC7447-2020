@@ -14,6 +14,8 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.PneumaticShooterSubsystem;
 import frc.robot.subsystems.LimelightRotation;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.AutonWheelSpinner;
+
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -34,6 +36,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Robot extends TimedRobot {
 
   public static final Subsystem ArmRotation = null;
+  //private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
   public static OI oi;
 
@@ -41,6 +45,7 @@ public class Robot extends TimedRobot {
   public static PneumaticShooterSubsystem pneumaticShooterSubsystem = new PneumaticShooterSubsystem();
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  public static AutonWheelSpinner autonWheelSpinner = new AutonWheelSpinner();
   public static Keyboard keyboard = new Keyboard();
 
   /**
@@ -65,6 +70,22 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    //runs regardless of the period
+    //Color detectedColor = m_colorSensor.getColor();
+    //double IR = m_colorSensor.getIR();
+
+    //int proximity = m_colorSensor.getProximity();
+
+
+
+    // //SmartDashboard.putNumber("Red", detectedColor.red);
+    // SmartDashboard.putNumber("Green", detectedColor.green);
+    // SmartDashboard.putNumber("Blue", detectedColor.blue);
+    // SmartDashboard.putNumber("IR", IR);
+
+
+
+    
   }
 
   /**
