@@ -167,8 +167,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
 
-    keyboard.receivePackets();
-    System.out.println(keyboard.getKeyPress());
+    // keyboard.receivePackets();
+    // System.out.println(keyboard.getKeyPress());
   }
 
   /**
