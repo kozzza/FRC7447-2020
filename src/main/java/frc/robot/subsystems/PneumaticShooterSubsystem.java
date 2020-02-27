@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,16 +19,19 @@ public class PneumaticShooterSubsystem extends Subsystem {
   // here. Call these from Commands.
 
   private final DoubleSolenoid doubleSolenoid = new DoubleSolenoid(0,1);
+  private final Solenoid SingleSolenoid = new Solenoid(4);
   private final DoubleSolenoid doubleSolenoid2 = new DoubleSolenoid(2,3);
 
   public void ShooterToggle(final int solenoidToggle) {
     System.out.println("Toggling:");
     if (solenoidToggle == -1) {
       doubleSolenoid.set(DoubleSolenoid.Value.kForward);
+      SingleSolenoid.set(true);
       System.out.println("Solenoid on");
     } 
     else if (solenoidToggle == 1) {
       doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+      SingleSolenoid.set(false);
       System.out.println("Solenoid off");
     }
   }
