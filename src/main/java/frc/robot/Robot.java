@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -39,6 +40,17 @@ public class Robot extends TimedRobot {
   //private final I2C.Port i2cPort = I2C.Port.kOnboard;
   //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
+  private final Encoder encoderLeft = new Encoder(0,1);
+  private final Encoder encoderRight = new Encoder(2,3);
+
+  double encoderLeftDistance = encoderLeft.getDistance();
+  double encoderRightDistance = encoderRight.getDistance();
+
+  double encoderLeftRate = encoderRight.getRate();
+  double encoderRightRate = encoderLeft.getRate();
+
+  
+
   public static OI oi;
 
   public static DriveTrain driveTrain = new DriveTrain();
@@ -46,7 +58,7 @@ public class Robot extends TimedRobot {
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static AutonWheelSpinner autonWheelSpinner = new AutonWheelSpinner();
-  public static Keyboard keyboard = new Keyboard();
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -150,7 +162,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+  
     Scheduler.getInstance().run();
+
 
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
