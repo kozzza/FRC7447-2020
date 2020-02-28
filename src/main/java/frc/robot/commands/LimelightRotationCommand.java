@@ -7,16 +7,18 @@
 
 package frc.robot.commands;
 
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PneumaticShooterCommand extends Command {
-  private int solenoidToggle;
 
-  //solenoidToggle: 1 means shooter is down and picking up power cells, -1 means shooter is up and shooting them
-  public PneumaticShooterCommand() {
-    solenoidToggle = 1;
-    requires(Robot.pneumaticShooterSubsystem);
+
+public class LimelightRotationCommand extends Command {
+  public static int limelightDirection; //determines whether intake will spin in or out based on where the shooter is pointed
+
+  //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
+  public LimelightRotationCommand() {
+    requires(Robot.intakeSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -25,23 +27,22 @@ public class PneumaticShooterCommand extends Command {
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override
+  @Override 
   protected void execute() {
-    Robot.pneumaticShooterSubsystem.ShooterToggle(solenoidToggle);
 
+    Robot.limelightRotation.limelightSpin(0.5f * limelightDirection);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    solenoidToggle *= -1;
-    // IntakeCommand.intakeDirection = solenoidToggle;
   }
 
   // Called when another command which requires one or more of the same
@@ -51,3 +52,4 @@ public class PneumaticShooterCommand extends Command {
     end();
   }
 }
+  
