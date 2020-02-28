@@ -10,10 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PneumaticClimbCommand extends Command {
-  boolean solenoidToggle = false;
-  public PneumaticClimbCommand() {
-    requires(Robot.pneumaticShooterSubsystem);
+public class LimelighRotationCommand extends Command {
+  float percentVoltage = 1.0f;
+  public LimelighRotationCommand() {
+    // Use requires() here to declare subsystem dependencies
+   requires(Robot.limelightRotation);
   }
 
   // Called just before this Command runs the first time
@@ -24,19 +25,18 @@ public class PneumaticClimbCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.pneumaticShooterSubsystem.Solenoidclimbonoff(solenoidToggle);
+    Robot.limelightRotation.limelightSpin(percentVoltage);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    solenoidToggle =! solenoidToggle;
   }
 
   // Called when another command which requires one or more of the same

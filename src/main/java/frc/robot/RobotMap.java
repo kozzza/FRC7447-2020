@@ -27,7 +27,7 @@ public class RobotMap {
   public static int leftSlave0 = 2;
   public static int leftSlave1 = 3;
 
-  public static int limelight = 0;
+  public static int limelight = 7;
 
   public static int buttonAPort = 1;
   public static int buttonBPort = 2;
