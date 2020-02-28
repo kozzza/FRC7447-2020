@@ -13,7 +13,6 @@ import frc.robot.commands.FindTargetCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.PneumaticClimbCommand;
 import frc.robot.commands.PneumaticShooterCommand;
-import frc.robot.commands.ReverseIntakeCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ColorSelectionCommand;
 import frc.robot.commands.DistanceAdjustCommand;
@@ -34,8 +33,8 @@ public class OI {
   public XboxController stick = new XboxController(0);
   
   public OI() {
-    // Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
-    // buttonAButton.whenPressed(new DistanceAdjustCommand());
+    Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
+    buttonAButton.whenPressed(new DistanceAdjustCommand());
   
     Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
     buttonBButton.whenPressed(new FindTargetCommand());
@@ -44,10 +43,10 @@ public class OI {
     rightBumperButton.whileHeld(new IntakeCommand());
 
     Button leftBumperButton = new JoystickButton (stick, RobotMap.leftBumperPort);
-    leftBumperButton.whileHeld(new ReverseIntakeCommand());
+    leftBumperButton.whileHeld(new PneumaticClimbCommand());
 
-    Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
-    buttonAButton.whenPressed(new PneumaticShooterCommand());
+    Button buttonXButton = new JoystickButton(stick, RobotMap.buttonXPort);
+    buttonXButton.whenPressed(new PneumaticShooterCommand());
 
     Button buttonYButton = new JoystickButton(stick, RobotMap.buttonYPort);
     buttonYButton.whenActive(new ColorSelectionCommand());

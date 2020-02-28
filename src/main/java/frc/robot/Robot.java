@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -40,9 +39,6 @@ public class Robot extends TimedRobot {
   //private final I2C.Port i2cPort = I2C.Port.kOnboard;
   //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
-  private final Encoder encoderLeft = new Encoder(0,12);
-  private final Encoder encoderRight = new Encoder (2,3);
-
   public static OI oi;
 
   public static DriveTrain driveTrain = new DriveTrain();
@@ -50,7 +46,7 @@ public class Robot extends TimedRobot {
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static AutonWheelSpinner autonWheelSpinner = new AutonWheelSpinner();
-
+  public static Keyboard keyboard = new Keyboard();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -154,12 +150,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-
-    SmartDashboard.putNumber("Encoder Distance For Right", encoderRight.getDistance());
-    SmartDashboard.putNumber("Encoder Rate For Right", encoderRight.getRate());
-    SmartDashboard.putNumber("Encoder Distance For Left", encoderLeft.getDistance());
-    SmartDashboard.putNumber("Encoder Rate For Right", encoderLeft.getRate());
-
     Scheduler.getInstance().run();
 
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -177,7 +167,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
 
-  
+    keyboard.receivePackets();
+    System.out.println(keyboard.getKeyPress());
   }
 
   /**

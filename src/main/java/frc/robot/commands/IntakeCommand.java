@@ -14,10 +14,11 @@ import frc.robot.Robot;
 
 
 public class IntakeCommand extends Command {
-  float percentVoltage = 0.5f;
+  public static int intakeDirection; //determines whether intake will spin in or out based on where the shooter is pointed
 
+  //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
   public IntakeCommand() {
-    // Use requires() here to declare subsystem dependencies
+    intakeDirection = -1; 
     requires(Robot.intakeSubsystem);
   }
 
@@ -30,16 +31,13 @@ public class IntakeCommand extends Command {
   @Override 
   protected void execute() {
 
-    Robot.intakeSubsystem.intakeSpin(percentVoltage);
-
+    Robot.intakeSubsystem.intakeSpin(0.5f * intakeDirection);
+    
   }
-
-  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    
     return false;
   }
 

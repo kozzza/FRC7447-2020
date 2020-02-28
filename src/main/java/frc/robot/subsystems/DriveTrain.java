@@ -17,8 +17,6 @@ import frc.robot.commands.DriveManuallyCommand;
  * Add your docs here.
  */
 public class DriveTrain extends Subsystem {
-
-
    private WPI_VictorSPX leftMaster = new WPI_VictorSPX(RobotMap.leftMaster);
    private WPI_VictorSPX leftSlave0 = new WPI_VictorSPX(RobotMap.leftSlave0);
    private WPI_VictorSPX leftSlave1 = new WPI_VictorSPX(RobotMap.leftSlave1);
