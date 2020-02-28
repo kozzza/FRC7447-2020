@@ -46,7 +46,6 @@ public class Robot extends TimedRobot {
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static AutonWheelSpinner autonWheelSpinner = new AutonWheelSpinner();
-  public static Keyboard keyboard = new Keyboard();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -167,13 +166,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
 
-    keyboard.receivePackets();
-    System.out.println(keyboard.getKeyPress());
   }
 
-  /**
-   * This function is called periodically during test mode.
-   */
+
   @Override
   public void testPeriodic() {
   }
