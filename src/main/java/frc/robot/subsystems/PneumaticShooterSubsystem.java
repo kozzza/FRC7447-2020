@@ -22,6 +22,7 @@ public class PneumaticShooterSubsystem extends Subsystem {
   private final DoubleSolenoid doubleSolenoid2 = new DoubleSolenoid(2,3);
   private final Solenoid singleSolenoid = new Solenoid(4);
 
+
   
 
   public void ShooterToggle(final int solenoidToggle) {

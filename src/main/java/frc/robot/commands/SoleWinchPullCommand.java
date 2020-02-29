@@ -7,38 +7,33 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
-
-public class ReverseIntakeCommand extends Command {
-  float percentVoltage = -0.5f;
-  //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
-  public ReverseIntakeCommand() {
-    
-    requires(Robot.intakeSubsystem);
+public class SoleWinchPullCommand extends Command {
+  public SoleWinchPullCommand() {
+    // Use requires() here to declare subsystem dependencies
+  requires(Robot.winchsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-   
+    setTimeout(6);
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override 
+  @Override
   protected void execute() {
 
-    Robot.intakeSubsystem.intakeSpin(percentVoltage);
-    
+    Robot.winchsystem.winchSystem(.8);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
@@ -50,7 +45,5 @@ public class ReverseIntakeCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
-  

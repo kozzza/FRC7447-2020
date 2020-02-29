@@ -7,38 +7,29 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
-public class AutonWheelSpinner extends Subsystem {
+public class WinchSystem extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  private WPI_VictorSPX leftWinchMaster = new WPI_VictorSPX(RobotMap.leftWinchMaster);
+  private WPI_VictorSPX rightWinchMaster = new WPI_VictorSPX(RobotMap.rightWinchMaster);
 
-  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(8);
-  
-  
 
-    
-  
+  public void winchSystem (double percentVoltage) {
 
-  public void scrollMovement(double percentVoltage) {
-    colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
+    rightWinchMaster.follow(leftWinchMaster);
+    leftWinchMaster.set(ControlMode.PercentOutput, percentVoltage);
+
   }
 
-  
-
-  
-
-  
-  
-
-  // public void intakeSpin(double percentVoltage) {
-  //   intakeMaster.set(ControlMode.PercentOutput, percentVoltage);
-  //   intakeSlave.set(ControlMode.PercentOutput, percentVoltage);
-  // }
 
   @Override
   public void initDefaultCommand() {

@@ -16,6 +16,7 @@ import frc.robot.subsystems.PneumaticShooterSubsystem;
 import frc.robot.subsystems.LimelightRotation;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.AutonWheelSpinner;
+import frc.robot.subsystems.WinchSystem;
 
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -58,6 +59,8 @@ public class Robot extends TimedRobot {
   public static LimelightRotation limelightRotation = new LimelightRotation();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static AutonWheelSpinner autonWheelSpinner = new AutonWheelSpinner();
+  public static WinchSystem winchsystem = new WinchSystem();
+
 
 
   /**
