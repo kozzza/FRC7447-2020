@@ -16,7 +16,7 @@ import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 
 
-public class ColorSelectionCommand extends Command {
+public class YellowSelectionCommand extends Command {
   final Color kBlueTarget = ColorMatch.makeColor(0, 255, 255);
   final Color kGreenTarget = ColorMatch.makeColor(0, 255, 0);
   final Color kRedTarget = ColorMatch.makeColor(255, 0, 0);
@@ -24,11 +24,12 @@ public class ColorSelectionCommand extends Command {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   String colorString;
   double counter = 0;
+  Boolean isComplete;
   final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
      final ColorMatch m_colorMatcher = new ColorMatch();
 
    
-  public ColorSelectionCommand() {
+  public YellowSelectionCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.autonWheelSpinner);
   }
@@ -51,14 +52,15 @@ public class ColorSelectionCommand extends Command {
     // getting color value of sensor
     
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
-    while (match.color != kBlueTarget && match.confidence < .5 && counter != 2){
-      if (match.color == kBlueTarget && counter != 2) {
+    while (match.color != kYellowTarget && match.confidence < .5 && counter != 2){
+      if (match.color == kYellowTarget && counter != 2) {
         counter += 1;
         Robot.autonWheelSpinner.scrollMovement(.024);
       }
-      else if (match.color == kBlueTarget && match.confidence > .5 && counter == 1) {
+      else if (match.color == kYellowTarget && match.confidence > .5 && counter == 1) {
           counter +=1;
           Robot.autonWheelSpinner.scrollMovement(-.02);
+          isComplete = true;
       }
       else {
         Robot.autonWheelSpinner.scrollMovement(.03);
@@ -83,7 +85,7 @@ public class ColorSelectionCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isCompleted();
   }
 
   // Called once after isFinished returns true
@@ -92,11 +94,14 @@ public class ColorSelectionCommand extends Command {
     counter = 0;
     
     
+    
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
+

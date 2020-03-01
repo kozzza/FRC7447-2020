@@ -15,7 +15,7 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.PneumaticShooterCommand;
 import frc.robot.commands.ReverseIntakeCommand;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ColorSelectionCommand;
+import frc.robot.commands.BlueSelectionCommand;
 import frc.robot.commands.DistanceAdjustCommand;
 
 
@@ -51,7 +51,7 @@ public class OI {
     buttonXButton.whenPressed(new PneumaticShooterCommand());
 
     Button buttonYButton = new JoystickButton(stick, RobotMap.buttonYPort);
-    buttonYButton.whenActive(new ColorSelectionCommand());
+    buttonYButton.whenActive(new BlueSelectionCommand());
     
   }
   // There are a few additional built in buttons you can use. Additionally,
