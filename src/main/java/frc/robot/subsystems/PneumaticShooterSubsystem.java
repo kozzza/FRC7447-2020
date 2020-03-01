@@ -19,11 +19,7 @@ public class PneumaticShooterSubsystem extends Subsystem {
   // here. Call these from Commands.
 
   private final DoubleSolenoid doubleSolenoid = new DoubleSolenoid(0,1);
-  private final DoubleSolenoid doubleSolenoid2 = new DoubleSolenoid(2,3);
   private final Solenoid singleSolenoid = new Solenoid(4);
-
-
-  
 
   public void ShooterToggle(final int solenoidToggle) {
     System.out.println("Toggling:");
@@ -38,18 +34,6 @@ public class PneumaticShooterSubsystem extends Subsystem {
       singleSolenoid.set(false);
       System.out.println("Solenoid off");
     }
-  }
-  public void Solenoidclimbonoff(final boolean solenoidToggle) {
-    System.out.println("Climb Toggling");
-    if (solenoidToggle) {
-      doubleSolenoid2.set(DoubleSolenoid.Value.kForward);
-      System.out.println("~Climb Initiated~");
-    }
-    else {
-      doubleSolenoid2.set(DoubleSolenoid.Value.kReverse);
-      System.out.println("~Climb Deactivated~");
-    }
-
   }
 
   @Override
