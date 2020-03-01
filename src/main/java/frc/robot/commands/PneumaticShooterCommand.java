@@ -40,7 +40,7 @@ public class PneumaticShooterCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    // solenoidToggle *= -1;
+    solenoidToggle *= -1;
     // IntakeCommand.intakeDirection = solenoidToggle;
   }
 
