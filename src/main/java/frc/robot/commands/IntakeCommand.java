@@ -15,10 +15,11 @@ import frc.robot.Robot;
 
 public class IntakeCommand extends Command {
   float percentVoltage = 0.5f;
+  int intakeDirection;
   //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
-  public IntakeCommand() {
-    
+  public IntakeCommand(int direction) {
     requires(Robot.intakeSubsystem);
+    intakeDirection = direction;
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class IntakeCommand extends Command {
   @Override 
   protected void execute() {
 
-    Robot.intakeSubsystem.intakeSpin(percentVoltage);
+    Robot.intakeSubsystem.intakeSpin(percentVoltage * intakeDirection);
     
   }
 

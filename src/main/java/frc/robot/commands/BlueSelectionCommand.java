@@ -31,7 +31,7 @@ public class BlueSelectionCommand extends Command {
    
   public BlueSelectionCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.autonWheelSpinner);
+    requires(Robot.wheelSpinner);
   }
 
 
@@ -54,20 +54,19 @@ public class BlueSelectionCommand extends Command {
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
     while (match.color != kBlueTarget && match.confidence < .5 && counter != 2){
-      if (match.color == kBlueTarget && counter != 2) {
-        counter += 1;
-        Robot.autonWheelSpinner.scrollMovement(.024);
+        if (match.color == kBlueTarget && counter != 2) {
+          counter += 1;
+          Robot.wheelSpinner.scrollMovement(.024);
+        }
+        else if (match.color == kBlueTarget && match.confidence > .5 && counter == 1) {
+            counter +=1;
+            Robot.wheelSpinner.scrollMovement(-.02);
+            isComplete = true;
+        }
+        else {
+          Robot.wheelSpinner.scrollMovement(.03);
+        }
       }
-      else if (match.color == kBlueTarget && match.confidence > .5 && counter == 1) {
-          counter +=1;
-          Robot.autonWheelSpinner.scrollMovement(-.02);
-          isComplete = true;
-      }
-      else {
-        Robot.autonWheelSpinner.scrollMovement(.03);
-      }
-      }
-
     }
     // if (match.color == kBlueTarget && match.confidence > .3 && counter < 1) {
     //   counter += 1;

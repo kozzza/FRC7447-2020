@@ -7,22 +7,22 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+
 
 /**
  * Add your docs here.
  */
-public class LimelightRotation extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  private WPI_VictorSPX limelightMotor = new WPI_VictorSPX(RobotMap.limelight);
+public class WheelSpinner extends Subsystem {
 
-  public void limelightSpin(double percentVoltage) {
-    limelightMotor.set(ControlMode.PercentOutput, percentVoltage);
+  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(8);
+  
+  public void scrollMovement(double percentVoltage) {
+    colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
   }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

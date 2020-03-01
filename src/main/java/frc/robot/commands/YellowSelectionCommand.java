@@ -25,13 +25,14 @@ public class YellowSelectionCommand extends Command {
   String colorString;
   double counter = 0;
   Boolean isComplete;
+
   final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
      final ColorMatch m_colorMatcher = new ColorMatch();
 
    
   public YellowSelectionCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.autonWheelSpinner);
+    requires(Robot.wheelSpinner);
   }
 
 
@@ -55,15 +56,15 @@ public class YellowSelectionCommand extends Command {
     while (match.color != kYellowTarget && match.confidence < .5 && counter != 2){
       if (match.color == kYellowTarget && counter != 2) {
         counter += 1;
-        Robot.autonWheelSpinner.scrollMovement(.024);
+        Robot.wheelSpinner.scrollMovement(.024);
       }
       else if (match.color == kYellowTarget && match.confidence > .5 && counter == 1) {
           counter +=1;
-          Robot.autonWheelSpinner.scrollMovement(-.02);
+          Robot.wheelSpinner.scrollMovement(-.02);
           isComplete = true;
       }
       else {
-        Robot.autonWheelSpinner.scrollMovement(.03);
+        Robot.wheelSpinner.scrollMovement(.03);
       }
       }
 
