@@ -31,7 +31,7 @@ public class GreenSelectionCommand extends Command {
    
   public GreenSelectionCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.autonWheelSpinner);
+    requires(Robot.wheelSpinner);
   }
 
 
@@ -55,15 +55,15 @@ public class GreenSelectionCommand extends Command {
     while (match.color != kGreenTarget && match.confidence < .5 && counter != 2){
       if (match.color == kRedTarget && counter != 2) {
         counter += 1;
-        Robot.autonWheelSpinner.scrollMovement(.024);
+        Robot.wheelSpinner.scrollMovement(.024);
       }
       else if (match.color == kGreenTarget && match.confidence > .5 && counter == 1) {
           counter +=1;
-          Robot.autonWheelSpinner.scrollMovement(-.02);
+          Robot.wheelSpinner.scrollMovement(-.02);
           isComplete = true;
       }
       else {
-        Robot.autonWheelSpinner.scrollMovement(.03);
+        Robot.wheelSpinner.scrollMovement(.03);
       }
       }
 
