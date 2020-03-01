@@ -19,17 +19,17 @@ import frc.robot.RobotMap;
 public class WinchSystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private WPI_VictorSPX leftWinchMaster = new WPI_VictorSPX(RobotMap.leftWinchMaster);
-  private WPI_VictorSPX rightWinchMaster = new WPI_VictorSPX(RobotMap.rightWinchMaster);
 
+  private WPI_VictorSPX rightWinch = new WPI_VictorSPX(RobotMap.rightWinchPort);
+  private WPI_VictorSPX leftWinch = new WPI_VictorSPX(RobotMap.leftWinchPort);
 
-  public void winchSystem (double percentVoltage) {
-
-    rightWinchMaster.follow(leftWinchMaster);
-    leftWinchMaster.set(ControlMode.PercentOutput, percentVoltage);
-
+  public WinchSystem() {
+    leftWinch.follow(rightWinch);
   }
 
+  public void winchSystem (double percentVoltage) {
+    rightWinch.set(ControlMode.PercentOutput, percentVoltage);
+  }
 
   @Override
   public void initDefaultCommand() {
