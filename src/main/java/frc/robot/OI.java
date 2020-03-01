@@ -9,18 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.FindTargetCommand;
+import frc.robot.commands.TrackTargetCommand;
 import frc.robot.commands.IntakeCommand;
-// import frc.robot.commands.LimelighRotationCommand;
+import frc.robot.commands.ManualColorSpinner;
 import frc.robot.commands.PneumaticShooterCommand;
-import frc.robot.commands.ReverseIntakeCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BlueSelectionCommand;
-import frc.robot.commands.DistanceAdjustCommand;
-
-
-
-
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,22 +30,21 @@ public class OI {
   
   public OI() {
     Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
-    buttonAButton.whenPressed(new DistanceAdjustCommand());
   
     Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
-    buttonBButton.whileHeld(new FindTargetCommand());
+    buttonBButton.whileHeld(new TrackTargetCommand(6));
   
     Button rightBumperButton = new JoystickButton(stick, RobotMap.rightBumperPort);
-    rightBumperButton.whileHeld(new IntakeCommand());
+    rightBumperButton.whileHeld(new IntakeCommand(1));
 
-    Button leftBumperButton = new JoystickButton (stick, RobotMap.leftBumperPort);
-    leftBumperButton.whileHeld(new ReverseIntakeCommand());
+    Button leftBumperButton = new JoystickButton(stick, RobotMap.leftBumperPort);
+    leftBumperButton.whileHeld(new IntakeCommand(-1));
 
     Button buttonXButton = new JoystickButton(stick, RobotMap.buttonXPort);
     buttonXButton.whenPressed(new PneumaticShooterCommand());
 
     Button buttonYButton = new JoystickButton(stick, RobotMap.buttonYPort);
-    buttonYButton.whenActive(new BlueSelectionCommand());
+    buttonYButton.whenActive(new ManualColorSpinner());
     
   }
   // There are a few additional built in buttons you can use. Additionally,
