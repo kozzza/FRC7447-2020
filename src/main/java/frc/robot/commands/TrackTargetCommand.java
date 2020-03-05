@@ -17,28 +17,31 @@ public class TrackTargetCommand extends Command {
   double lastTurnError = 0;
   double lastDistError = 0;
 
-  float ktP = 0.05f;  // Proportional control constant for turn
-  float ktI = 0.005f; // Integral control constant for turn
-  float ktD = 0.05f; // Derivative control constant for turn
+  float ktP = 0.03f;  // Proportional control constant for turn
+  float ktI = 0.00f; // Integral control constant for turn
+  float ktD = 0.07f; // Derivative control constant for turn
 
-  float kmP = 0.02f; // Proportional control constant for move
-  float kmD = 0.05f; // Deriviative control constant for move
+  float kmP = 0.007f; // Proportional control constant for move
+  float kmD = 0.008f; // Deriviative control constant for move
 
   double targetDist;
-  double arctanAngle;
+  double tanAngle;
   double distanceError;
-  double combinedHeight = 81 - 22.5; //height between limelight and target
+  double combinedHeight = 90.25 - 23.5; //height between limelight and target
 
   double tx;
   double ty;
   boolean tv;
   boolean isFinished;
+  boolean isAuton;
 
   Limelight limelight = new Limelight();
+  ShootRoutineCommand shootRoutineCommand = new ShootRoutineCommand();
 
-  public TrackTargetCommand(int targetDistParam) {
+  public TrackTargetCommand(int targetDistParam, boolean isAutonParam) {
     requires(Robot.driveTrain);
     targetDist = targetDistParam;
+    isAuton = isAutonParam;
   }
 
   // Called just before this Command runs the first time
@@ -55,8 +58,9 @@ public class TrackTargetCommand extends Command {
     ty = Limelight.getTy();
     tv = Limelight.isTarget();
 
-    arctanAngle = Math.atan(61.314+ ty);
-    distanceError = (combinedHeight / arctanAngle) - targetDist;
+    tanAngle = Math.tan(Math.toRadians(34.67 + ty));
+    System.out.println(combinedHeight/tanAngle);
+    distanceError = (combinedHeight / tanAngle) - targetDist;
 
     double dTurnError = (tx - lastTurnError);
     double dDistError = (distanceError - lastDistError);
@@ -70,10 +74,10 @@ public class TrackTargetCommand extends Command {
     double turnAdjust = ktP*tx + ktD * dTurnError + ktI * totalTurnError;
 
     if (tv) {
-      Robot.driveTrain.manualDrive(drivingAdjust, turnAdjust);
+      Robot.driveTrain.manualDrive(drivingAdjust*0.75, turnAdjust);
     }
 
-    if ((distanceError < 1 && distanceError > -1) && (tx < 5 && tx > -5)) { //stop running if within 1 inch of target distance and 5 degrees of target
+    if ((distanceError < 2 && distanceError > -2) && (tx < 5 && tx > -5)) { //stop running if within 1 inch of target distance and 5 degrees of target
       isFinished = true;
     }
 
@@ -90,6 +94,9 @@ public class TrackTargetCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    if (isAuton) {
+      shootRoutineCommand.start();
+    }
   }
 
 

@@ -171,7 +171,6 @@ public class Robot extends TimedRobot {
   
     Scheduler.getInstance().run();
 
-
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
@@ -186,9 +185,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
-
-    // keyboard.receivePackets();
-    // System.out.println(keyboard.getKeyPress());
   }
 
   /**

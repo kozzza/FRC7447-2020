@@ -13,7 +13,7 @@ import frc.robot.Robot;
 
 public class EncoderAutonCommand extends Command {
   Limelight limelight = new Limelight();
-  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(18);
+  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(18, false);
   double targetDist = 12;
   double brakeVoltage = 0.2;
   public EncoderAutonCommand() {

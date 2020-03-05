@@ -7,14 +7,12 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 
-
 public class IntakeCommand extends Command {
-  float percentVoltage = 0.89f;
+  float percentVoltage = 0.9f;
   int intakeDirection;
   //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
   public IntakeCommand() {
@@ -32,9 +30,6 @@ public class IntakeCommand extends Command {
   protected void execute() {
 
     Robot.intakeSubsystem.intakeSpin(percentVoltage);
-
-    
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

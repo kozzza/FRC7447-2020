@@ -25,7 +25,6 @@ public class DriveTrain extends Subsystem {
    private WPI_VictorSPX rightSlave0 = new WPI_VictorSPX(RobotMap.rightSlave0);
    private WPI_VictorSPX rightSlave1 = new WPI_VictorSPX(RobotMap.rightSlave1);
 
-
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 

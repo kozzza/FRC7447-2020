@@ -1,4 +1,3 @@
-  
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -9,46 +8,42 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.Limelight;
 
-public class AutonCommand extends Command {
-  Limelight limelight = new Limelight();
-  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(18, true);
 
-  public AutonCommand() {
-    requires(Robot.driveTrain);
+public class ShootRoutineCommand extends Command {
+  float percentVoltage = -0.9f;
+  
+  public ShootRoutineCommand() {
+    requires(Robot.intakeSubsystem);
+    requires(Robot.pneumaticShooterSubsystem);
+    
   }
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      setTimeout(3);
+      setTimeout(8);
+      Robot.pneumaticShooterSubsystem.ShooterToggle(-1);
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override
+  @Override 
   protected void execute() {
-      double tx = Limelight.getTx();
-      System.out.println(tx);
-
-      if (Limelight.isTarget()) {
-        trackTargetCommand.start();
-      }
-      else {
-        Robot.driveTrain.manualDrive(0, -0.5);
-      }
+    if (timeSinceInitialized() > 3) {
+        Robot.intakeSubsystem.intakeSpin(percentVoltage);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    
+    Robot.pneumaticShooterSubsystem.ShooterToggle(1);
+    Robot.intakeSubsystem.intakeSpin(0);
   }
 
   // Called when another command which requires one or more of the same
@@ -58,3 +53,4 @@ public class AutonCommand extends Command {
     end();
   }
 }
+  
