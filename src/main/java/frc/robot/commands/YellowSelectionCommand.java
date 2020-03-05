@@ -26,7 +26,7 @@ public class YellowSelectionCommand extends Command {
   double counter = 0;
   Boolean isComplete;
 
-  final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+   final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
      final ColorMatch m_colorMatcher = new ColorMatch();
 
    
@@ -52,6 +52,7 @@ public class YellowSelectionCommand extends Command {
     Color detectedColor = m_colorSensor.getColor();
     // getting color value of sensor
     
+    // Robot.wheelSpinner.colorchange(0);
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
     while (match.color != kYellowTarget && match.confidence < .5 && counter != 2){
       if (match.color == kYellowTarget && counter != 2) {
@@ -69,21 +70,7 @@ public class YellowSelectionCommand extends Command {
       }
 
     }
-    // if (match.color == kBlueTarget && match.confidence > .3 && counter < 1) {
-    //   counter += 1;
-    //   colorString = "Blue";
-    //   System.out.println("*****First rotation commencing*****");
-    //   Robot.autonWheelSpinner.scrollMovement(.023);
-     
-    // } else if (match.color == kRedTarget) {
-    //   colorString = "Red";
-    // } else if (match.color == kGreenTarget) {
-    //   colorString = "Green";
-    // } else {
-    //   Robot.autonWheelSpinner.scrollMovement(.025);
-    // }
-
-  // Make this return true when this Command no longer needs to run execute()
+  
   @Override
   protected boolean isFinished() {
     return isCompleted();

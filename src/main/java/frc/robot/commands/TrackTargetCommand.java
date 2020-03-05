@@ -21,7 +21,7 @@ public class TrackTargetCommand extends Command {
   float ktI = 0.005f; // Integral control constant for turn
   float ktD = 0.05f; // Derivative control constant for turn
 
-  float kmP = 0.03f; // Proportional control constant for move
+  float kmP = 0.02f; // Proportional control constant for move
   float kmD = 0.05f; // Deriviative control constant for move
 
   double targetDist;
@@ -36,7 +36,7 @@ public class TrackTargetCommand extends Command {
 
   Limelight limelight = new Limelight();
 
-  public TrackTargetCommand(double targetDistParam) {
+  public TrackTargetCommand(int targetDistParam) {
     requires(Robot.driveTrain);
     targetDist = targetDistParam;
   }
@@ -55,7 +55,7 @@ public class TrackTargetCommand extends Command {
     ty = Limelight.getTy();
     tv = Limelight.isTarget();
 
-    arctanAngle = Math.atan(41 + ty);
+    arctanAngle = Math.atan(61.314+ ty);
     distanceError = (combinedHeight / arctanAngle) - targetDist;
 
     double dTurnError = (tx - lastTurnError);

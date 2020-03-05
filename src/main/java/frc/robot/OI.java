@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.TrackTargetCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ManualColorSpinner;
@@ -24,27 +25,29 @@ public class OI {
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
-  // You create one by telling it which joystick it's on and which button
+  // You create one  by telling it which joystick it's on and which button
   // number it is.
   public XboxController stick = new XboxController(0);
+  public Joystick joystick = new Joystick(1);
+
   
   public OI() {
     Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
   
-    Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
-    buttonBButton.whileHeld(new TrackTargetCommand(6));
+     Button buttonTwoPort = new JoystickButton(joystick, RobotMap.buttonTwoPort);
+     buttonTwoPort.whileHeld(new TrackTargetCommand(6));
   
-    Button rightBumperButton = new JoystickButton(stick, RobotMap.rightBumperPort);
-    rightBumperButton.whileHeld(new IntakeCommand(1));
+    Button buttonNinePort = new JoystickButton(joystick, 3);
+    buttonNinePort.whileHeld(new IntakeCommand(1));
 
-    Button leftBumperButton = new JoystickButton(stick, RobotMap.leftBumperPort);
-    leftBumperButton.whileHeld(new IntakeCommand(-1));
+    Button buttonEightPort = new JoystickButton(joystick, 4);
+    buttonEightPort.whileHeld(new IntakeCommand(-1));
 
-    Button buttonXButton = new JoystickButton(stick, RobotMap.buttonXPort);
-    buttonXButton.whenPressed(new PneumaticShooterCommand());
+    Button buttonOnePort = new JoystickButton(joystick, RobotMap.buttonOnePort);
+   buttonOnePort.whenPressed(new PneumaticShooterCommand());
 
-    Button buttonYButton = new JoystickButton(stick, RobotMap.buttonYPort);
-    buttonYButton.whenActive(new ManualColorSpinner());
+    Button buttonFivePort = new JoystickButton(joystick, 9);
+    buttonFivePort.whileHeld(new ManualColorSpinner());
     
   }
   // There are a few additional built in buttons you can use. Additionally,

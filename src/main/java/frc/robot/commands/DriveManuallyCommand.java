@@ -17,7 +17,8 @@ public class DriveManuallyCommand extends Command {
   double mmspeed = 0.55; //micromove speed
   double mtspeed = 0.43; //microturn speed
   double mspeed = 0.80; //move speed
-  double tspeed = 0.625; //turn speed
+  double tspeed = 0.75; //turn speed
+  double stop;
   public static boolean toggle;
 
   public DriveManuallyCommand() {
@@ -33,8 +34,18 @@ public class DriveManuallyCommand extends Command {
   @Override
   protected void execute() {
     double move = Robot.oi.stick.getTriggerAxis(GenericHID.Hand.kRight) - Robot.oi.stick.getTriggerAxis(GenericHID.Hand.kLeft);
-    double turn = Robot.oi.stick.getX(Hand.kLeft);
+    double turn = Robot.oi.stick.getX(Hand.kLeft) * .95;
     double boost = -Robot.oi.stick.getY(Hand.kRight)/2;  
+    
+
+    boolean brake = Robot.oi.stick.getAButtonPressed();
+    if (brake) {
+      stop = .1;
+    }
+    else {
+      stop = 1;
+    }
+    
     System.out.println(turn);
 
     // if (turn < 0.1 && move > 0.1) {
@@ -46,7 +57,7 @@ public class DriveManuallyCommand extends Command {
     //   Robot.driveTrain.manualDrive(move * (mspeed + boost), turn * (tspeed + boost));
     // }
     
-    Robot.driveTrain.manualDrive(move * (mspeed + boost), turn * (tspeed + boost));
+    Robot.driveTrain.manualDrive(((move * (mspeed + boost)) * stop), (turn * (tspeed + boost)));
 
   }
 

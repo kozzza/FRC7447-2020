@@ -18,7 +18,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.WheelSpinner;
 import frc.robot.subsystems.WinchSystem;
 import frc.robot.commands.AutonCommand;
-
+import frc.robot.commands.TrackTargetCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -41,8 +41,8 @@ public class Robot extends TimedRobot {
   //private final I2C.Port i2cPort = I2C.Port.kOnboard;
   //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
-  private final Encoder encoderLeft = new Encoder(0,1);
-  private final Encoder encoderRight = new Encoder(2,3);
+  public static final Encoder encoderLeft = new Encoder(0,1);
+  public static final Encoder encoderRight = new Encoder(2,3);
 
   double encoderLeftDistance = encoderLeft.getDistance();
   double encoderRightDistance = encoderRight.getDistance();
@@ -51,6 +51,7 @@ public class Robot extends TimedRobot {
   double encoderRightRate = encoderLeft.getRate();
 
   AutonCommand autonCommand = new AutonCommand();
+
 
   public static OI oi;
 
@@ -112,7 +113,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    Scheduler.getInstance().run();
+    //Scheduler.getInstance().run();
   }
 
   /**
