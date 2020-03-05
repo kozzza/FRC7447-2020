@@ -14,7 +14,7 @@ import frc.robot.Robot;
 
 
 public class IntakeCommand extends Command {
-  float percentVoltage = 0.5f;
+  float percentVoltage = .89f;
   //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
   public IntakeCommand() {
     

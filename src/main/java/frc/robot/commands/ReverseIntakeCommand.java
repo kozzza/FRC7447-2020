@@ -7,14 +7,13 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 
 
 public class ReverseIntakeCommand extends Command {
-  float percentVoltage = -0.5f;
+  float percentVoltage = -1.0f;
   //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
   public ReverseIntakeCommand() {
     
@@ -38,12 +37,13 @@ public class ReverseIntakeCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.intakeSubsystem.intakeSpin(0);
   }
 
   // Called when another command which requires one or more of the same

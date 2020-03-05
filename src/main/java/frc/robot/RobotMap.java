@@ -23,8 +23,8 @@ public class RobotMap {
   public static int rightMaster = 4;
   public static int rightSlave0 = 5;
   public static int rightSlave1 = 6;
-  public static int leftMaster = 2;
-  public static int leftSlave0 = 1;
+  public static int leftMaster = 1;
+  public static int leftSlave0 = 2;
   public static int leftSlave1 = 3;
 
 

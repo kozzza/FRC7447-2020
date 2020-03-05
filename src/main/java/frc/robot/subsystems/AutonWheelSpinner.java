@@ -17,7 +17,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  */
 public class AutonWheelSpinner extends Subsystem {
 
-  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(8);
+  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(7);
   
   
 

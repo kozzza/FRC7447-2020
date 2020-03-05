@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FindTargetCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ManualColorSpinner;
 // import frc.robot.commands.LimelighRotationCommand;
 import frc.robot.commands.PneumaticShooterCommand;
 import frc.robot.commands.ReverseIntakeCommand;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BlueSelectionCommand;
 import frc.robot.commands.DistanceAdjustCommand;
@@ -33,25 +35,29 @@ public class OI {
   // You create one by telling it which joystick it's on and which button
   // number it is.
   public XboxController stick = new XboxController(0);
+  public Joystick stick1 = new Joystick(1);
+
   
   public OI() {
     Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
     buttonAButton.whenPressed(new DistanceAdjustCommand());
   
-    Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
+    Button buttonBButton = new JoystickButton(stick1, 2);
     buttonBButton.whileHeld(new FindTargetCommand());
   
-    Button rightBumperButton = new JoystickButton(stick, RobotMap.rightBumperPort);
+    Button rightBumperButton = new JoystickButton(stick1, 4);
     rightBumperButton.whileHeld(new IntakeCommand());
 
-    Button leftBumperButton = new JoystickButton (stick, RobotMap.leftBumperPort);
+    Button leftBumperButton = new JoystickButton (stick1, 3);
     leftBumperButton.whileHeld(new ReverseIntakeCommand());
 
-    Button buttonXButton = new JoystickButton(stick, RobotMap.buttonXPort);
+    Button buttonXButton = new JoystickButton(stick1, 1);
     buttonXButton.whenPressed(new PneumaticShooterCommand());
 
-    Button buttonYButton = new JoystickButton(stick, RobotMap.buttonYPort);
-    buttonYButton.whenActive(new BlueSelectionCommand());
+    Button buttonSeven = new JoystickButton(stick1, 5);
+    buttonSeven.whileHeld(new ManualColorSpinner());
+
+ 
     
   }
   // There are a few additional built in buttons you can use. Additionally,

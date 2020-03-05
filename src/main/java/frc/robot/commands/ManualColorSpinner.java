@@ -9,12 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.AutonWheelSpinner;
 
 
 public class ManualColorSpinner extends Command {
   public ManualColorSpinner() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.autonWheelSpinner);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +27,7 @@ public class ManualColorSpinner extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.autonWheelSpinner.scrollMovement(.8);
+    Robot.autonWheelSpinner.scrollMovement(1);
 
   }
 
@@ -38,7 +40,7 @@ public class ManualColorSpinner extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
+    Robot.autonWheelSpinner.scrollMovement(0);
   }
 
   // Called when another command which requires one or more of the same
