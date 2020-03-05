@@ -7,41 +7,50 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Limelight;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.util.Color;
-import com.revrobotics.ColorSensorV3;
-import com.revrobotics.ColorMatchResult;
-import com.revrobotics.ColorMatch;
 
-
-public class ToggleAutonColorSpinner extends Command {
-  private int cycle;
-  public ToggleAutonColorSpinner() {
+public class EncoderAutonCommand extends Command {
+  Limelight limelight = new Limelight();
+  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(18);
+  double targetDist = 12;
+  double brakeVoltage = 0.2;
+  public EncoderAutonCommand() {
+    requires(Robot.driveTrain);
     // Use requires() here to declare subsystem dependencies
-    cycle = 0;
-   requires(Robot.wheelSpinner);
-    
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (cycle > 5) {
-      cycle = 1;
-    }
-   
-    
+    setTimeout(1);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-
-    Robot.wheelSpinner.colorChange(cycle);
-    
-
+  protected void execute() { //Robot drives backward to pass initiation line and then drives forward up to Power Port
+    if (!isTimedOut()) {
+      Robot.driveTrain.manualDrive(-0.2, 0);
+    }
+    else {
+      if ((Robot.encoderLeft.getDistance() < targetDist) && (Robot.encoderRight.getDistance() < targetDist)){
+        Robot.driveTrain.manualDrive(0.2, 0);
+      }
+      else {
+        Robot.driveTrain.manualDrive(brakeVoltage, 0);
+        brakeVoltage *= 0.7;
+        /*double tx = Limelight.getTx();
+        System.out.println(tx);
+  
+        if ((tx < 5 && tx > -5) && Limelight.isTarget()) {
+          trackTargetCommand.start();
+        }
+        else {
+          Robot.driveTrain.manualDrive(0, -0.5);*/
+      }
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -53,14 +62,11 @@ public class ToggleAutonColorSpinner extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    cycle += 1;
-    
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    
   }
 }

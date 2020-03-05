@@ -7,39 +7,18 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
-public class IntakeSubsystem extends Subsystem {
-  
-  //instantiate new motor control objects
-
-  public WPI_VictorSPX intakeMaster = new WPI_VictorSPX(RobotMap.intakeMasterPort);
-  public WPI_VictorSPX intakeSlave = new WPI_VictorSPX(RobotMap.intakeSlavePort);
-
-
-  public IntakeSubsystem() {
-    intakeSlave.follow(intakeMaster);
-  }
-
-
-  public void intakeSpin(double percentVoltage) {
-    intakeMaster.set(ControlMode.PercentOutput, percentVoltage);
-    
-    
-  }
-
-
+public class ManualColorSpinner extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
 
   @Override
   public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
-
-
-
 }

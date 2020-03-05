@@ -26,7 +26,7 @@ public class YellowSelectionCommand extends Command {
   double counter = 0;
   Boolean isComplete;
 
-  final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+   final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
      final ColorMatch m_colorMatcher = new ColorMatch();
 
    
