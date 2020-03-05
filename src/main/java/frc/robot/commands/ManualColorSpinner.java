@@ -15,6 +15,7 @@ public class ManualColorSpinner extends Command {
   public ManualColorSpinner() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.manualColor);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +27,7 @@ public class ManualColorSpinner extends Command {
   @Override
   protected void execute() {
     
-    Robot.wheelSpinner.scrollMovement(.8);
+    Robot.wheelSpinner.scrollMovement(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,6 +39,7 @@ public class ManualColorSpinner extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.manualColor.scrollMovement(0);
 
   }
 

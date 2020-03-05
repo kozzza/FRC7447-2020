@@ -14,12 +14,12 @@ import frc.robot.Robot;
 
 
 public class IntakeCommand extends Command {
-  float percentVoltage = 0.5f;
+  float percentVoltage = 0.89f;
   int intakeDirection;
   //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
-  public IntakeCommand(int direction) {
+  public IntakeCommand() {
     requires(Robot.intakeSubsystem);
-    intakeDirection = direction;
+    
     
   }
   // Called just before this Command runs the first time
@@ -31,15 +31,7 @@ public class IntakeCommand extends Command {
   @Override 
   protected void execute() {
 
-    if (intakeDirection != 1) {
-
-      Robot.intakeSubsystem.intakeSpin(percentVoltage * intakeDirection );
-
-    }
-
-    else {
-      Robot.intakeSubsystem.intakeSpin(percentVoltage * intakeDirection );
-    }
+    Robot.intakeSubsystem.intakeSpin(percentVoltage);
 
     
     
@@ -48,7 +40,7 @@ public class IntakeCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -7,14 +7,24 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.WPI_MotorSafetyImplem;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class ManualColorSpinner extends Subsystem {
+public class ManualColor extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(7);
+
+
+  public void scrollMovement(double percentVoltage) {
+    colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
+  }
 
   @Override
   public void initDefaultCommand() {
