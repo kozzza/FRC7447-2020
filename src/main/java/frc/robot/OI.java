@@ -15,8 +15,8 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ManualColorSpinner;
 import frc.robot.commands.PneumaticShooterCommand;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.BlueSelectionCommand;
 import frc.robot.commands.ReverseIntakeCommand;
+import frc.robot.commands.ShootRoutineCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,9 +34,10 @@ public class OI {
   
   public OI() {
     Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
+    buttonAButton.whenPressed(new ShootRoutineCommand());
   
-     Button buttonTwoPort = new JoystickButton(stick1, RobotMap.buttonTwoPort);
-     buttonTwoPort.whileHeld(new TrackTargetCommand(6));
+    Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
+    buttonBButton.whileHeld(new TrackTargetCommand(49, false));
   
     Button buttonNinePort = new JoystickButton(stick1, 4);
     buttonNinePort.whileHeld(new IntakeCommand());
@@ -45,7 +46,7 @@ public class OI {
     buttonEightPort.whileHeld(new ReverseIntakeCommand());
 
     Button buttonOnePort = new JoystickButton(stick1, RobotMap.buttonOnePort);
-   buttonOnePort.whenPressed(new PneumaticShooterCommand());
+    buttonOnePort.whenPressed(new PneumaticShooterCommand());
 
     Button buttonFivePort = new JoystickButton(stick1, 5);
     buttonFivePort.whileHeld(new ManualColorSpinner());

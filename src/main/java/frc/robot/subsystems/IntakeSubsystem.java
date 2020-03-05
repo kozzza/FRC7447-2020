@@ -40,6 +40,4 @@ public class IntakeSubsystem extends Subsystem {
   public void initDefaultCommand() {
   }
 
-
-
 }

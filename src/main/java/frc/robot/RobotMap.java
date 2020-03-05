@@ -16,8 +16,8 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  public static final int intakeMasterPort = 10;
-  public static final int intakeSlavePort = 8;
+  public static final int intakeMasterPort = 8;
+  public static final int intakeSlavePort = 10;
 
   public static int rightMaster = 4;
   public static int rightSlave0 = 5;
