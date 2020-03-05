@@ -16,6 +16,7 @@ import frc.robot.commands.ManualColorSpinner;
 import frc.robot.commands.PneumaticShooterCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BlueSelectionCommand;
+import frc.robot.commands.ReverseIntakeCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -28,25 +29,25 @@ public class OI {
   // You create one  by telling it which joystick it's on and which button
   // number it is.
   public XboxController stick = new XboxController(0);
-  public Joystick joystick = new Joystick(1);
+  public Joystick stick1= new Joystick(1);
 
   
   public OI() {
     Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
   
-     Button buttonTwoPort = new JoystickButton(joystick, RobotMap.buttonTwoPort);
+     Button buttonTwoPort = new JoystickButton(stick1, RobotMap.buttonTwoPort);
      buttonTwoPort.whileHeld(new TrackTargetCommand(6));
   
-    Button buttonNinePort = new JoystickButton(joystick, 3);
-    buttonNinePort.whileHeld(new IntakeCommand(1));
+    Button buttonNinePort = new JoystickButton(stick1, 4);
+    buttonNinePort.whileHeld(new IntakeCommand());
 
-    Button buttonEightPort = new JoystickButton(joystick, 4);
-    buttonEightPort.whileHeld(new IntakeCommand(-1));
+    Button buttonEightPort = new JoystickButton(stick1, 3);
+    buttonEightPort.whileHeld(new ReverseIntakeCommand());
 
-    Button buttonOnePort = new JoystickButton(joystick, RobotMap.buttonOnePort);
+    Button buttonOnePort = new JoystickButton(stick1, RobotMap.buttonOnePort);
    buttonOnePort.whenPressed(new PneumaticShooterCommand());
 
-    Button buttonFivePort = new JoystickButton(joystick, 9);
+    Button buttonFivePort = new JoystickButton(stick1, 5);
     buttonFivePort.whileHeld(new ManualColorSpinner());
     
   }
