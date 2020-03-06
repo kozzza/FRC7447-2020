@@ -38,24 +38,7 @@ public class DriveManuallyCommand extends Command {
     double boost = -Robot.oi.stick.getY(Hand.kRight)/2;  
     
 
-    boolean brake = Robot.oi.stick.getAButtonPressed();
-    if (brake) {
-      stop = .1;
-    }
-    else {
-      stop = 1;
-    }
     
-    System.out.println(turn);
-
-    // if (turn < 0.1 && move > 0.1) {
-    //   System.out.println("NO TURN");
-    //   System.out.println(0.4 * move * (mspeed + boost));
-    //   Robot.driveTrain.manualDrive(move * (mspeed + boost), 0.4 * move * (mspeed + boost));
-    // }
-    // else {
-    //   Robot.driveTrain.manualDrive(move * (mspeed + boost), turn * (tspeed + boost));
-    // }
     
     Robot.driveTrain.manualDrive(((move * (mspeed + boost)) * stop), (turn * (tspeed + boost)));
 
