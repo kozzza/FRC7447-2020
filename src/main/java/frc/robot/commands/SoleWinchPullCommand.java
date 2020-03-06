@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SoleWinchPullCommand extends Command {
+  
   public SoleWinchPullCommand() {
     // Use requires() here to declare subsystem dependencies
   requires(Robot.winchsystem);

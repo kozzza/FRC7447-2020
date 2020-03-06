@@ -17,6 +17,7 @@ import frc.robot.commands.PneumaticShooterCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ReverseIntakeCommand;
 import frc.robot.commands.ShootRoutineCommand;
+import frc.robot.commands.TeleArmRaiseCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,10 +34,11 @@ public class OI {
 
   
   public OI() {
-    // Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
+    Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
+    buttonAButton.whenPressed(new ShootRoutineCommand());
   
     Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
-    buttonBButton.whileHeld(new TrackTargetCommand(49, false));
+    buttonBButton.whileHeld(new TrackTargetCommand(12, false));
   
     Button buttonNinePort = new JoystickButton(stick1, 4);
     buttonNinePort.whileHeld(new IntakeCommand());
@@ -48,8 +50,10 @@ public class OI {
     buttonOnePort.whenPressed(new PneumaticShooterCommand());
 
     Button buttonFivePort = new JoystickButton(stick1, 5);
-    buttonFivePort.whileHeld(new ManualColorSpinner());
-    
+    buttonFivePort.whileHeld(new TeleArmRaiseCommand());
+
+    Button buttonSevenPort = new JoystickButton(stick1, 7);
+    buttonSevenPort.whileHeld(new ManualColorSpinner());
   }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to

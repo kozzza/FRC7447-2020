@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.WPI_MotorSafetyImplem;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.ManualColorSpinner;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
@@ -27,12 +28,12 @@ public class ManualColor extends Subsystem {
 
   public void scrollMovement(double percentVoltage) {
 
-  colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
+    colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
+
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
   }
 }

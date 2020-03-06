@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.TeleArmRaiseCommand;
 
 /**
  * Add your docs here.
@@ -30,6 +31,7 @@ public class WinchSystem extends Subsystem {
 
   public void winchSystem (double percentVoltage) {
     rightWinch.set(ControlMode.PercentOutput, percentVoltage);
+
   }
 
   public void teleArmRaise (double percentVoltage) {
@@ -38,6 +40,6 @@ public class WinchSystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    // setDefaultCommand(new TeleArmRaiseCommand());
   }
 }
