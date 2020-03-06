@@ -16,11 +16,10 @@ import frc.robot.subsystems.PneumaticShooterSubsystem;
 import frc.robot.subsystems.WheelSpinner;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManualColor;
-import frc.robot.subsystems.WheelSpinner;
+
 import frc.robot.subsystems.WinchSystem;
 import frc.robot.commands.AutonCommand;
-import frc.robot.commands.ManualColorSpinner;
-import frc.robot.commands.TrackTargetCommand;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 

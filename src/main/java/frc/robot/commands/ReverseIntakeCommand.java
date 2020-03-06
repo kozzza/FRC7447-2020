@@ -14,7 +14,11 @@ import frc.robot.Robot;
 
 
 public class ReverseIntakeCommand extends Command {
+<<<<<<< Updated upstream
   float percentVoltage = -0.9f;
+=======
+  float percentVoltage = -1f;
+>>>>>>> Stashed changes
   int intakeDirection;
   //intakeDirection: False means intake is sucking power cells, True means intake is shooting them
   public ReverseIntakeCommand() {
@@ -30,7 +34,15 @@ public class ReverseIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override 
   protected void execute() {
+<<<<<<< Updated upstream
     Robot.intakeSubsystem.intakeSpin(percentVoltage);
+=======
+
+    Robot.intakeSubsystem.intakeSpin(percentVoltage, 0.5f);
+
+    
+    
+>>>>>>> Stashed changes
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +54,7 @@ public class ReverseIntakeCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intakeSubsystem.intakeSpin(0);
+    Robot.intakeSubsystem.intakeSpin(0, 1f);
   }
 
   // Called when another command which requires one or more of the same

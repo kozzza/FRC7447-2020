@@ -28,6 +28,7 @@ public class RobotMap {
 
   public static int leftWinchPort = 7;
   public static int rightWinchPort = 8;
+  public static int teleArmPort = 9; //not final
   
   public static int limelight = 7;
 

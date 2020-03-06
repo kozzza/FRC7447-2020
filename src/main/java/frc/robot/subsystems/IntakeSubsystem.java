@@ -23,14 +23,14 @@ public class IntakeSubsystem extends Subsystem {
   public WPI_VictorSPX intakeSlave = new WPI_VictorSPX(RobotMap.intakeSlavePort);
 
 
-  public IntakeSubsystem() {
-    intakeSlave.follow(intakeMaster);
-  }
+  // public IntakeSubsystem() {
+  //   intakeSlave.follow(intakeMaster);
+  // }
 
 
-  public void intakeSpin(double percentVoltage) {
+  public void intakeSpin(double percentVoltage, double powerFactor) {
     intakeMaster.set(ControlMode.PercentOutput, percentVoltage);
-    
+    intakeSlave.set(ControlMode.PercentOutput, (percentVoltage * powerFactor));
     
   }
 

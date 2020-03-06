@@ -22,6 +22,7 @@ public class WinchSystem extends Subsystem {
 
   private WPI_VictorSPX rightWinch = new WPI_VictorSPX(RobotMap.rightWinchPort);
   private WPI_VictorSPX leftWinch = new WPI_VictorSPX(RobotMap.leftWinchPort);
+  private WPI_VictorSPX teleArm = new WPI_VictorSPX(RobotMap.teleArmPort);
 
   public WinchSystem() {
     leftWinch.follow(rightWinch);
@@ -31,6 +32,9 @@ public class WinchSystem extends Subsystem {
     rightWinch.set(ControlMode.PercentOutput, percentVoltage);
   }
 
+  public void teleArmRaise (double percentVoltage) {
+    teleArm.set(ControlMode.PercentOutput, percentVoltage);
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
