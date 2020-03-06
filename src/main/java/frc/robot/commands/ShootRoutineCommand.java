@@ -29,7 +29,7 @@ public class ShootRoutineCommand extends Command {
   @Override 
   protected void execute() {
     if (timeSinceInitialized() > 3) {
-        Robot.intakeSubsystem.intakeSpin(percentVoltage);
+        Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
     }
   }
 
@@ -43,7 +43,7 @@ public class ShootRoutineCommand extends Command {
   @Override
   protected void end() {
     Robot.pneumaticShooterSubsystem.ShooterToggle(1);
-    Robot.intakeSubsystem.intakeSpin(0);
+    Robot.intakeSubsystem.intakeSpin(0, 1f);
   }
 
   // Called when another command which requires one or more of the same

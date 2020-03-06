@@ -26,12 +26,8 @@ public class ManualColorSpinner extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-<<<<<<< Updated upstream
-    Robot.wheelSpinner.scrollMovement(1);
-=======
     
     Robot.wheelSpinner.scrollMovement(Robot.oi.stick1.getRawAxis(1));
->>>>>>> Stashed changes
   }
 
   // Make this return true when this Command no longer needs to run execute()
