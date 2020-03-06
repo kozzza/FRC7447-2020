@@ -87,20 +87,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //runs regardless of the period
-    //Color detectedColor = m_colorSensor.getColor();
-    //double IR = m_colorSensor.getIR();
-
-    //int proximity = m_colorSensor.getProximity();
-
-
-
-    // //SmartDashboard.putNumber("Red", detectedColor.red);
-    // SmartDashboard.putNumber("Green", detectedColor.green);
-    // SmartDashboard.putNumber("Blue", detectedColor.blue);
-    // SmartDashboard.putNumber("IR", IR);
-
-
-
     
   }
 

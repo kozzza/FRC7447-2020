@@ -15,10 +15,6 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ManualColorSpinner;
 import frc.robot.commands.PneumaticShooterCommand;
 import edu.wpi.first.wpilibj.XboxController;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 import frc.robot.commands.ReverseIntakeCommand;
 import frc.robot.commands.ShootRoutineCommand;
 
@@ -37,12 +33,7 @@ public class OI {
 
   
   public OI() {
-<<<<<<< Updated upstream
-    Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
-    buttonAButton.whenPressed(new ShootRoutineCommand());
-=======
     // Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
->>>>>>> Stashed changes
   
     Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
     buttonBButton.whileHeld(new TrackTargetCommand(49, false));
