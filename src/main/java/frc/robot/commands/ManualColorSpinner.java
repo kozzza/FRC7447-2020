@@ -27,7 +27,7 @@ public class ManualColorSpinner extends Command {
   @Override
   protected void execute() {
     
-    Robot.wheelSpinner.scrollMovement(Robot.oi.stick1.getRawAxis(1));
+    Robot.wheelSpinner.scrollMovement(0.75f);
   }
 
   // Make this return true when this Command no longer needs to run execute()

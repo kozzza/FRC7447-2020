@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class TeleArmRaiseCommand extends Command {
+
+double percentVoltage = 1;
   public TeleArmRaiseCommand() {
     requires(Robot.winchsystem);
   }
@@ -18,21 +20,28 @@ public class TeleArmRaiseCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(2.5);
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    Robot.winchsystem.teleArmRaise(0.1); //direction may change depending on how the motor is placed
+    Robot.winchsystem.teleArmRaise(percentVoltage);
+
+
+   
+
+
+
+     //direction may change depending on how the motor is placed
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
