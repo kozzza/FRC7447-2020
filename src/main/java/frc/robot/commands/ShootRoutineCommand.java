@@ -15,8 +15,6 @@ import frc.robot.Robot;
 public class ShootRoutineCommand extends Command {
   float percentVoltage = 0.9f;
 
-  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(130, false);
-
   public ShootRoutineCommand() {
     requires(Robot.intakeSubsystem);
     requires(Robot.pneumaticShooterSubsystem);
@@ -36,6 +34,7 @@ public class ShootRoutineCommand extends Command {
       System.out.println("past 3");
       Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
     }
+    Robot.driveTrain.manualDrive(0.2, 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +49,6 @@ public class ShootRoutineCommand extends Command {
     System.out.println("end");
     Robot.pneumaticShooterSubsystem.ShooterToggle(1);
     Robot.intakeSubsystem.intakeSpin(0, 1f);
-    trackTargetCommand.start();
   }
 
   // Called when another command which requires one or more of the same
