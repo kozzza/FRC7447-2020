@@ -31,10 +31,7 @@ public class DriveManuallyCommand extends Command {
   protected void execute() {
     double move = Robot.oi.stick.getTriggerAxis(GenericHID.Hand.kRight) - Robot.oi.stick.getTriggerAxis(GenericHID.Hand.kLeft);
     double turn = Robot.oi.stick.getX(Hand.kLeft) * .8;
-    double boost = -Robot.oi.stick.getY(Hand.kRight)/2;  
-    
-
-    
+    double boost = -Robot.oi.stick.getY(Hand.kRight)/2;    
     
     Robot.driveTrain.manualDrive(((move * (mspeed + boost))), (turn * (tspeed + boost)));
 
