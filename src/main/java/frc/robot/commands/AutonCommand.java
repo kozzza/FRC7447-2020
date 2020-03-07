@@ -13,7 +13,7 @@ import frc.robot.Limelight;
 
 public class AutonCommand extends Command {
   Limelight limelight = new Limelight();
-  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(18, true);
+  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(24, true);
 
   public AutonCommand() {
     requires(Robot.driveTrain);

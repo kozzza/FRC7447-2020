@@ -27,7 +27,7 @@ public class ManualColor extends Subsystem {
 
 
   public void scrollMovement(double percentVoltage) {
-
+    System.out.println(percentVoltage);
     colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
 
   }

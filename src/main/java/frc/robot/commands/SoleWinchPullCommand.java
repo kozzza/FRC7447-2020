@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SoleWinchPullCommand extends Command {
+  double percentVoltage = 1;
   
   public SoleWinchPullCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -27,7 +28,7 @@ public class SoleWinchPullCommand extends Command {
   @Override
   protected void execute() {
 
-    Robot.winchsystem.winchSystem(.8);
+    Robot.winchsystem.winchSystem(percentVoltage);
 
   }
 

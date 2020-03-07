@@ -21,13 +21,13 @@ public class TrackTargetCommand extends Command {
   float ktI = 0.00f; // Integral control constant for turn
   float ktD = 0.07f; // Derivative control constant for turn
 
-  float kmP = 0.007f; // Proportional control constant for move
-  float kmD = 0.008f; // Deriviative control constant for move
+  float kmP = 0.011f; // Proportional control constant for move
+  float kmD = 0.01f; // Deriviative control constant for move
 
   double targetDist;
   double tanAngle;
   double distanceError;
-  double combinedHeight = 90.25 - 23.5; //height between limelight and target
+  double combinedHeight = 91 - 26.5; //height between limelight and target
 
   double tx;
   double ty;
@@ -58,7 +58,7 @@ public class TrackTargetCommand extends Command {
     ty = Limelight.getTy();
     tv = Limelight.isTarget();
 
-    tanAngle = Math.tan(Math.toRadians(34.67 + ty));
+    tanAngle = Math.tan(Math.toRadians(48.54 + ty));
     System.out.println(combinedHeight/tanAngle);
     distanceError = (combinedHeight / tanAngle) - targetDist;
 
@@ -77,8 +77,9 @@ public class TrackTargetCommand extends Command {
       Robot.driveTrain.manualDrive(drivingAdjust*0.75, turnAdjust);
     }
 
-    if ((distanceError < 2 && distanceError > -2) && (tx < 5 && tx > -5)) { //stop running if within 1 inch of target distance and 5 degrees of target
+    if ((distanceError < 5 && distanceError > -5) && (tx < 5 && tx > -5)) { //stop running if within 1 inch of target distance and 5 degrees of target
       isFinished = true;
+      System.out.println("FINISHED");
     }
 
     lastTurnError = tx;

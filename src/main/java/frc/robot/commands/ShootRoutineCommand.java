@@ -11,7 +11,7 @@ import frc.robot.Robot;
 
 
 public class ShootRoutineCommand extends Command {
-  float percentVoltage = -0.9f;
+  float percentVoltage = 0.9f;
   
   public ShootRoutineCommand() {
     requires(Robot.intakeSubsystem);
@@ -21,15 +21,19 @@ public class ShootRoutineCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      setTimeout(8);
+      setTimeout(11);
       Robot.pneumaticShooterSubsystem.ShooterToggle(-1);
   }
-
+ 
   // Called repeatedly when this Command is scheduled to run
   @Override 
   protected void execute() {
-    if (timeSinceInitialized() > 3) {
-        Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
+    if (timeSinceInitialized() > 5) {
+      System.out.println("past 3");
+      Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
+    }
+    else if (timeSinceInitialized() > 2) {
+      Robot.driveTrain.manualDrive(0.1, 0);
     }
   }
 
@@ -42,6 +46,7 @@ public class ShootRoutineCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("end");
     Robot.pneumaticShooterSubsystem.ShooterToggle(1);
     Robot.intakeSubsystem.intakeSpin(0, 1f);
   }

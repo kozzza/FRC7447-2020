@@ -34,11 +34,8 @@ public class OI {
 
   
   public OI() {
-    Button buttonAButton = new JoystickButton(stick, RobotMap.buttonAPort);
-    buttonAButton.whenPressed(new ShootRoutineCommand());
-  
     Button buttonBButton = new JoystickButton(stick, RobotMap.buttonBPort);
-    buttonBButton.whileHeld(new TrackTargetCommand(12, false));
+    buttonBButton.whileHeld(new TrackTargetCommand(24, false));
   
     Button buttonNinePort = new JoystickButton(stick1, 4);
     buttonNinePort.whileHeld(new IntakeCommand());

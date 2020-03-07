@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.I2C;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -22,7 +23,7 @@ import com.revrobotics.ColorSensorV3;
  */
 public class WheelSpinner extends Subsystem {
 
-  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(8);
+  public WPI_VictorSPX colorSpinner = new WPI_VictorSPX(RobotMap.spinnyBoiPort);
   
   public void scrollMovement(double percentVoltage) {
     colorSpinner.set(ControlMode.PercentOutput, percentVoltage);
