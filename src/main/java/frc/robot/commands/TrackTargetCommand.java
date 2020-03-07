@@ -14,6 +14,7 @@ import frc.robot.Robot;
 
 public class TrackTargetCommand extends Command {
   double totalTurnError = 0;
+  double totalMoveError = 0;
   double lastTurnError = 0;
   double lastDistError = 0;
 
@@ -21,8 +22,9 @@ public class TrackTargetCommand extends Command {
   float ktI = 0.00f; // Integral control constant for turn
   float ktD = 0.07f; // Derivative control constant for turn
 
-  float kmP = 0.011f; // Proportional control constant for move
-  float kmD = 0.01f; // Deriviative control constant for move
+  float kmP = 0.013f; // Proportional control constant for move
+  float kmI = 0.003f;
+  float kmD = 0.009f; // Deriviative control constant for move
 
   double targetDist;
   double tanAngle;
@@ -68,10 +70,13 @@ public class TrackTargetCommand extends Command {
     if (tx < 10 && tx > -10) {
       totalTurnError = totalTurnError + tx;
     }
+    if (distanceError < 18) {
+      totalMoveError = totalMoveError + distanceError;
+    }
 
     System.out.println("Distance Error: " + distanceError);
-    double drivingAdjust = kmP * distanceError + kmD * dDistError;
-    double turnAdjust = ktP*tx + ktD * dTurnError + ktI * totalTurnError;
+    double drivingAdjust = kmP * distanceError + kmD * dDistError + kmI * totalMoveError;
+    double turnAdjust = ktP * tx + ktD * dTurnError + ktI * totalTurnError;
 
     if (tv) {
       Robot.driveTrain.manualDrive(drivingAdjust*0.75, turnAdjust);

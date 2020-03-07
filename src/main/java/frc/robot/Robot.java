@@ -19,7 +19,8 @@ import frc.robot.subsystems.ManualColor;
 
 import frc.robot.subsystems.WinchSystem;
 import frc.robot.commands.AutonCommand;
-
+import frc.robot.commands.ShootRoutineCommand;
+import frc.robot.commands.TrackTargetCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -52,6 +53,8 @@ public class Robot extends TimedRobot {
   double encoderRightRate = encoderLeft.getRate();
 
   AutonCommand autonCommand = new AutonCommand();
+  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(0, true);
+  ShootRoutineCommand shootRoutineCommand = new ShootRoutineCommand();
 
 
   public static OI oi;
@@ -141,6 +144,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    trackTargetCommand.cancel();
+    shootRoutineCommand.cancel();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
