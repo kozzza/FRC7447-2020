@@ -21,7 +21,7 @@ public class ShootRoutineCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      setTimeout(11);
+      setTimeout(10);
       Robot.pneumaticShooterSubsystem.ShooterToggle(-1);
   }
  
@@ -32,7 +32,7 @@ public class ShootRoutineCommand extends Command {
       System.out.println("past 3");
       Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
     }
-    else if (timeSinceInitialized() > 2) {
+    else if (timeSinceInitialized() > 3) {
       Robot.driveTrain.manualDrive(0.1, 0);
     }
   }
