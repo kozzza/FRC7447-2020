@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class TeleArmRaiseCommand extends Command {
 
-double percentVoltage = 1;
+double percentVoltage = .7;
   public TeleArmRaiseCommand() {
     requires(Robot.winchsystem);
   }
