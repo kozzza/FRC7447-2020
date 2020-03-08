@@ -16,6 +16,7 @@ public class ShootRoutineCommand extends Command {
   float percentVoltage = 0.9f;
 
   public ShootRoutineCommand() {
+    requires(Robot.driveTrain);
     requires(Robot.intakeSubsystem);
     requires(Robot.pneumaticShooterSubsystem);
     
@@ -34,7 +35,9 @@ public class ShootRoutineCommand extends Command {
       System.out.println("past 3");
       Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
     }
-    Robot.driveTrain.manualDrive(0.2, 0);
+    if (timeSinceInitialized() > 2) {
+      Robot.driveTrain.manualDrive(0.3, 0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
