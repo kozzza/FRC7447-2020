@@ -11,12 +11,14 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.TrackTargetCommand;
+import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ManualColorSpinner;
 import frc.robot.commands.PneumaticShooterCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ReverseIntakeCommand;
 import frc.robot.commands.ShootRoutineCommand;
+import frc.robot.commands.SoleWinchPullCommand;
 import frc.robot.commands.TeleArmRaiseCommand;
 
 /**
@@ -46,11 +48,20 @@ public class OI {
     Button buttonOnePort = new JoystickButton(stick1, RobotMap.buttonOnePort);
     buttonOnePort.whenPressed(new PneumaticShooterCommand());
 
-    Button buttonFivePort = new JoystickButton(stick1, 5);
-    buttonFivePort.whileHeld(new TeleArmRaiseCommand());
-
     Button buttonSevenPort = new JoystickButton(stick1, 7);
     buttonSevenPort.whileHeld(new ManualColorSpinner());
+
+    Button buttonElevenPort = new JoystickButton(stick, 3);
+    buttonElevenPort.whileHeld(new TeleArmRaiseCommand(1, .7));
+
+    Button buttonFifteenPort = new JoystickButton(stick, 2);
+    buttonFifteenPort.whileHeld(new TeleArmRaiseCommand(-1, .2));
+
+    Button buttonThirteenPort = new JoystickButton(stick1, 13);
+    buttonThirteenPort.whileHeld(new SoleWinchPullCommand());
+
+    Button buttonTwoPort = new JoystickButton(stick1, 2);
+    buttonTwoPort.whenPressed(new DriveManuallyCommand());
   }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to

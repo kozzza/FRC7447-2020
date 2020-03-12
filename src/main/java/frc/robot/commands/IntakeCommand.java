@@ -29,7 +29,7 @@ public class IntakeCommand extends Command {
   @Override 
   protected void execute() {
 
-    Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
+    Robot.intakeSubsystem.intakeSpin(percentVoltage, 0.75f);
 
     
     

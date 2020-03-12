@@ -29,8 +29,8 @@ public class IntakeSubsystem extends Subsystem {
 
 
   public void intakeSpin(double percentVoltage, double powerFactor) {
-    intakeMaster.set(ControlMode.PercentOutput, percentVoltage);
-    intakeSlave.set(ControlMode.PercentOutput, (percentVoltage * powerFactor));
+    intakeMaster.set(ControlMode.PercentOutput, percentVoltage * powerFactor);
+    intakeSlave.set(ControlMode.PercentOutput, percentVoltage);
     
   }
 

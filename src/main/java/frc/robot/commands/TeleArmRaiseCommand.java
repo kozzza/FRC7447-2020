@@ -9,12 +9,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import jdk.jfr.Percentage;
 
 public class TeleArmRaiseCommand extends Command {
 
-double percentVoltage = .7;
-  public TeleArmRaiseCommand() {
+    //One motor raises telescope
+    //
+  // double percentVoltage = .7;
+  int direction;
+  double percentVoltage;
+  public TeleArmRaiseCommand(int directionParam, double voltage) {
     requires(Robot.winchsystem);
+    direction = directionParam;
+    percentVoltage = voltage;
+  
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +35,7 @@ double percentVoltage = .7;
   @Override
   protected void execute() {
 
-    Robot.winchsystem.teleArmRaise(percentVoltage);
+    Robot.winchsystem.teleArmRaise(percentVoltage*direction);
 
 
    
@@ -54,5 +62,6 @@ double percentVoltage = .7;
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

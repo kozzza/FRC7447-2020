@@ -15,6 +15,7 @@ import frc.robot.Robot;
 public class ShootRoutineCommand extends Command {
   float percentVoltage = 0.9f;
 
+  public static boolean teleopStarted;
   public ShootRoutineCommand() {
     requires(Robot.intakeSubsystem);
     requires(Robot.pneumaticShooterSubsystem);
@@ -24,6 +25,7 @@ public class ShootRoutineCommand extends Command {
   @Override
   protected void initialize() {
       setTimeout(7);
+      teleopStarted = false;
       Robot.pneumaticShooterSubsystem.ShooterToggle(-1);
   }
   
@@ -34,13 +36,13 @@ public class ShootRoutineCommand extends Command {
       System.out.println("past 3");
       Robot.intakeSubsystem.intakeSpin(percentVoltage, 1f);
     }
-    Robot.driveTrain.manualDrive(0.2, 0);
+    Robot.driveTrain.manualDrive(0.25, 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return (isTimedOut() || teleopStarted);
   }
 
   // Called once after isFinished returns true

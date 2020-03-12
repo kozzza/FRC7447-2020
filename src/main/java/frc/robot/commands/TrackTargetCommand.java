@@ -34,7 +34,7 @@ public class TrackTargetCommand extends Command {
   double tx;
   double ty;
   boolean tv;
-  boolean isFinished;
+  public static boolean isFinished;
   boolean isAuton;
 
   Limelight limelight = new Limelight();
