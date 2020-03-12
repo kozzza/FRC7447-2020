@@ -13,7 +13,7 @@ import frc.robot.Limelight;
 
 public class AutonCommand extends Command {
   Limelight limelight = new Limelight();
-  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(24, true);
+  TrackTargetCommand trackTargetCommand = new TrackTargetCommand(25, true);
 
   public AutonCommand() {
     requires(Robot.driveTrain);
@@ -29,21 +29,18 @@ public class AutonCommand extends Command {
   protected void execute() {
       double tx = Limelight.getTx();
       System.out.println(tx);
-      if (Limelight.isTarget()) {
-        trackTargetCommand.start();
-      }
+      trackTargetCommand.start();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    
   }
 
   // Called when another command which requires one or more of the same

@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.PneumaticShooterSubsystem;
-import frc.robot.subsystems.WheelSpinner;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ManualColor;
 
 import frc.robot.subsystems.WinchSystem;
 import frc.robot.commands.AutonCommand;
+import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ShootRoutineCommand;
 import frc.robot.commands.TrackTargetCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -55,14 +55,13 @@ public class Robot extends TimedRobot {
   AutonCommand autonCommand = new AutonCommand();
   TrackTargetCommand trackTargetCommand = new TrackTargetCommand(0, true);
   ShootRoutineCommand shootRoutineCommand = new ShootRoutineCommand();
-
+  DriveManuallyCommand driveManuallyCommand = new DriveManuallyCommand();
 
   public static OI oi;
 
   public static DriveTrain driveTrain = new DriveTrain();
   public static PneumaticShooterSubsystem pneumaticShooterSubsystem = new PneumaticShooterSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  public static WheelSpinner wheelSpinner = new WheelSpinner();
   public static WinchSystem winchsystem = new WinchSystem();
   public static ManualColor manualColor = new ManualColor();
 
@@ -144,8 +143,19 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    trackTargetCommand.cancel();
-    shootRoutineCommand.cancel();
+    if (trackTargetCommand != null) {
+      trackTargetCommand.cancel();
+    }
+    if (trackTargetCommand != null) {
+      trackTargetCommand.isFinished = true;
+    }
+    if (shootRoutineCommand != null) {
+      shootRoutineCommand.cancel();
+    }
+    if (shootRoutineCommand != null) {
+      shootRoutineCommand.teleopStarted = true;
+    }
+    driveManuallyCommand.start();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
