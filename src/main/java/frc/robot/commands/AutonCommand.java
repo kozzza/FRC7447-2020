@@ -22,6 +22,7 @@ public class AutonCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+      setTimeout(2);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -29,7 +30,11 @@ public class AutonCommand extends Command {
   protected void execute() {
       double tx = Limelight.getTx();
       System.out.println(tx);
-      if (Limelight.isTarget()) {
+
+      if (!isTimedOut()) {
+        Robot.driveTrain.manualDrive(-0.3, 0);
+      }
+      else if (Limelight.isTarget()) {
         trackTargetCommand.start();
       }
   }
